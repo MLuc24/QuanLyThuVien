@@ -46,106 +46,124 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="FormAdminInfor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormAdminInfor.Designer.cs">
+      <DependentUpon>FormAdminInfor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form10.cs">
+    <Compile Include="FormCTmuontra.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form10.Designer.cs">
-      <DependentUpon>Form10.cs</DependentUpon>
+    <Compile Include="FormCTmuontra.Designer.cs">
+      <DependentUpon>FormCTmuontra.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form11.cs">
+    <Compile Include="FormIndex.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form11.Designer.cs">
-      <DependentUpon>Form11.cs</DependentUpon>
+    <Compile Include="FormIndex.Designer.cs">
+      <DependentUpon>FormIndex.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="FormReceipt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="FormReceipt.Designer.cs">
+      <DependentUpon>FormReceipt.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form3.cs">
+    <Compile Include="FormUserReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form3.Designer.cs">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <Compile Include="FormUserReport.Designer.cs">
+      <DependentUpon>FormUserReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form4.cs">
+    <Compile Include="FormHistoryReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form4.Designer.cs">
-      <DependentUpon>Form4.cs</DependentUpon>
+    <Compile Include="FormHistoryReport.Designer.cs">
+      <DependentUpon>FormHistoryReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form5.cs">
+    <Compile Include="FormQLSach.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form5.Designer.cs">
-      <DependentUpon>Form5.cs</DependentUpon>
+    <Compile Include="FormQLSach.Designer.cs">
+      <DependentUpon>FormQLSach.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form6.cs">
+    <Compile Include="FormQLDocGia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form6.Designer.cs">
-      <DependentUpon>Form6.cs</DependentUpon>
+    <Compile Include="FormQLDocGia.Designer.cs">
+      <DependentUpon>FormQLDocGia.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form7.cs">
+    <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form7.Designer.cs">
-      <DependentUpon>Form7.cs</DependentUpon>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form8.cs">
+    <Compile Include="FormUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form8.Designer.cs">
-      <DependentUpon>Form8.cs</DependentUpon>
+    <Compile Include="FormUser.Designer.cs">
+      <DependentUpon>FormUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form9.cs">
+    <Compile Include="FormChangePw.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form9.Designer.cs">
-      <DependentUpon>Form9.cs</DependentUpon>
+    <Compile Include="FormChangePw.Designer.cs">
+      <DependentUpon>FormChangePw.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMT.Designer.cs">
+      <DependentUpon>FormMT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormBookReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBookReport.Designer.cs">
+      <DependentUpon>FormBookReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormAdminInfor.resx">
+      <DependentUpon>FormAdminInfor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form10.resx">
-      <DependentUpon>Form10.cs</DependentUpon>
+    <EmbeddedResource Include="FormCTmuontra.resx">
+      <DependentUpon>FormCTmuontra.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form11.resx">
-      <DependentUpon>Form11.cs</DependentUpon>
+    <EmbeddedResource Include="FormIndex.resx">
+      <DependentUpon>FormIndex.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="FormReceipt.resx">
+      <DependentUpon>FormReceipt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <EmbeddedResource Include="FormUserReport.resx">
+      <DependentUpon>FormUserReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form4.resx">
-      <DependentUpon>Form4.cs</DependentUpon>
+    <EmbeddedResource Include="FormHistoryReport.resx">
+      <DependentUpon>FormHistoryReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form5.resx">
-      <DependentUpon>Form5.cs</DependentUpon>
+    <EmbeddedResource Include="FormQLSach.resx">
+      <DependentUpon>FormQLSach.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form6.resx">
-      <DependentUpon>Form6.cs</DependentUpon>
+    <EmbeddedResource Include="FormQLDocGia.resx">
+      <DependentUpon>FormQLDocGia.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form7.resx">
-      <DependentUpon>Form7.cs</DependentUpon>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form8.resx">
-      <DependentUpon>Form8.cs</DependentUpon>
+    <EmbeddedResource Include="FormUser.resx">
+      <DependentUpon>FormUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form9.resx">
-      <DependentUpon>Form9.cs</DependentUpon>
+    <EmbeddedResource Include="FormChangePw.resx">
+      <DependentUpon>FormChangePw.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMT.resx">
+      <DependentUpon>FormMT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBookReport.resx">
+      <DependentUpon>FormBookReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
