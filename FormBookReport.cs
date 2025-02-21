@@ -13,11 +13,13 @@ namespace QuanLyThuVien
         private string kn;
         private DataTable pm;
         private DataTable pt;
-        public FormBookReport()
+        private string tenNhanVien;
+        public FormBookReport(string tenNV)
         {
             InitializeComponent();
             kn = ConfigurationManager.ConnectionStrings["qltv"].ConnectionString;
             LoadDataTreHan();
+            this.tenNhanVien = tenNV;
         }
 
         private void LoadData(int? thang = null, int? nam = null)
@@ -154,7 +156,40 @@ namespace QuanLyThuVien
 
         private void btnTra_Click(object sender, EventArgs e)
         {
+            
+            using (SqlConnection connection = new SqlConnection(kn))
+            {
+                string sql = @"
+            SELECT 
+                ct.sMaphieu, 
+                dg.sTendocgia, 
+                s.sTensach, 
+                ct.dNgayhentra, 
+                ct.dNgaytra, 
+                ct.iSlmuon, 
+                ct.sTinhtrangtra
+            FROM tblCTmuontra ct 
+            JOIN tblPhieumuon pm ON pm.sMaphieu = ct.sMaphieu
+            JOIN tblDocGia dg ON pm.sMadocgia = dg.sMadocgia
+            JOIN tblSach s ON ct.sMasach = s.sMasach
+            WHERE ct.sTinhtrangtra IS NOT NULL";
 
+                SqlDataAdapter da = new SqlDataAdapter(sql, connection);
+                DataSet1 ds = new DataSet1();
+                da.Fill(ds, "Danhsach");
+
+                // Tạo báo cáo Crystal Report
+                CrystalReport1 rpt = new CrystalReport1();
+                rpt.SetDataSource(ds.Tables[1]);
+
+                // Truyền giá trị "Tên nhân viên" vào báo cáo
+                rpt.SetParameterValue("TenNhanVien", this.tenNhanVien);
+
+                // Hiển thị báo cáo trên CrystalReportViewer
+                FormInBaoCao f = new FormInBaoCao();
+                f.crystalReportViewer1.ReportSource = rpt;
+                f.ShowDialog();
+            }
         }
 
         private void LoadDataTreHan()
@@ -187,6 +222,11 @@ namespace QuanLyThuVien
         private void tabPage2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

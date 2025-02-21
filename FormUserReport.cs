@@ -85,5 +85,10 @@ namespace QuanLyThuVien
         {
 
         }
+
+        private void dgvTreHan_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

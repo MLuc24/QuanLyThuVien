@@ -181,9 +181,9 @@ namespace QuanLyThuVien
             // 
             this.groupBox5.Controls.Add(this.dgvPhieuThu);
             this.groupBox5.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.groupBox5.Location = new System.Drawing.Point(33, 565);
+            this.groupBox5.Location = new System.Drawing.Point(28, 565);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(1012, 328);
+            this.groupBox5.Size = new System.Drawing.Size(1055, 328);
             this.groupBox5.TabIndex = 22;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Danh sách phiếu";
@@ -198,7 +198,7 @@ namespace QuanLyThuVien
             this.dgvPhieuThu.Name = "dgvPhieuThu";
             this.dgvPhieuThu.RowHeadersWidth = 82;
             this.dgvPhieuThu.RowTemplate.Height = 33;
-            this.dgvPhieuThu.Size = new System.Drawing.Size(989, 291);
+            this.dgvPhieuThu.Size = new System.Drawing.Size(1039, 291);
             this.dgvPhieuThu.TabIndex = 0;
             this.dgvPhieuThu.SelectionChanged += new System.EventHandler(this.dgvPhieuThu_SelectionChanged);
             // 
@@ -365,7 +365,6 @@ namespace QuanLyThuVien
             this.txtTimkiem.Name = "txtTimkiem";
             this.txtTimkiem.Size = new System.Drawing.Size(355, 41);
             this.txtTimkiem.TabIndex = 0;
-            this.txtTimkiem.Text = "Quản lý thu tiền";
             this.txtTimkiem.TextChanged += new System.EventHandler(this.txtTimkiem_TextChanged);
             // 
             // groupBox2
@@ -413,7 +412,7 @@ namespace QuanLyThuVien
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(1089, 912);
+            this.ClientSize = new System.Drawing.Size(1111, 912);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnDelete);

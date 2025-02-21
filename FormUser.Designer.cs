@@ -82,6 +82,8 @@ namespace QuanLyThuVien
             this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblTen = new System.Windows.Forms.Label();
             this.btnHome = new System.Windows.Forms.Button();
+            this.txtTongno = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -298,6 +300,8 @@ namespace QuanLyThuVien
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.txtTongno);
+            this.groupBox4.Controls.Add(this.label13);
             this.groupBox4.Controls.Add(this.dNgayhethan);
             this.groupBox4.Controls.Add(this.dNgaylapthe);
             this.groupBox4.Controls.Add(this.label11);
@@ -631,6 +635,23 @@ namespace QuanLyThuVien
             this.btnHome.TabIndex = 23;
             this.btnHome.UseVisualStyleBackColor = false;
             // 
+            // txtTongno
+            // 
+            this.txtTongno.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTongno.Location = new System.Drawing.Point(184, 288);
+            this.txtTongno.Name = "txtTongno";
+            this.txtTongno.Size = new System.Drawing.Size(345, 35);
+            this.txtTongno.TabIndex = 28;
+            // 
+            // label13
+            // 
+            this.label13.Location = new System.Drawing.Point(37, 280);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(141, 48);
+            this.label13.TabIndex = 27;
+            this.label13.Text = "Tổng nợ :";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FormUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -720,5 +741,7 @@ namespace QuanLyThuVien
         private System.Windows.Forms.ErrorProvider errorProvider2;
         private System.Windows.Forms.ErrorProvider errorProvider3;
         private System.Windows.Forms.Label lblTen;
+        private System.Windows.Forms.TextBox txtTongno;
+        private System.Windows.Forms.Label label13;
     }
 }

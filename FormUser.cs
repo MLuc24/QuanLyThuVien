@@ -68,6 +68,7 @@ namespace QuanLyThuVien
                             if (gioiTinh == "Nam") rdoNam.Checked = true;
                             else  rdoNu.Checked = true;
                             string maTheLoai = reader["sMaloaidocgia"].ToString();
+                            txtTongno.Text = reader["fTongno"].ToString();
                             cboLoaidocgia.SelectedValue = maTheLoai;
                             txtDiachi.Text = reader["sDiachi"].ToString();
                             txtSdt.Text = reader["sSdt"].ToString();
@@ -189,6 +190,7 @@ namespace QuanLyThuVien
             cboLoaidocgia.Enabled = false;
             txtDiachi.Enabled = false;
             txtSdt.Enabled = false;
+            txtTongno.Enabled = false;
             dNgaysinh.Enabled = false;
             dNgaylapthe.Enabled = false;
             dNgayhethan.Enabled = false;
@@ -272,6 +274,7 @@ namespace QuanLyThuVien
             rdoNu.Enabled = true;
             txtDiachi.Enabled = true;
             txtSdt.Enabled = true;
+            txtTongno.Enabled = false;
             dNgaysinh.Enabled = true;
 
             // Đổi trạng thái nút

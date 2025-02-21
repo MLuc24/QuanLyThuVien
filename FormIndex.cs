@@ -55,13 +55,6 @@ namespace QuanLyThuVien
             f2.Show();
         }
 
-        private void quảnLýĐộcGiảToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormQLDocGia f2 = new FormQLDocGia();
-            f2.Owner = this;
-            f2.Show();
-        }
-
         private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -69,16 +62,10 @@ namespace QuanLyThuVien
             formDangNhap.Show();
         }
 
-        private void quảnLýMượnTrảToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form7 f2 = new Form7();
-            f2.Owner = this;
-            f2.Show();
-        }
 
         private void báoCáoPhiếuTrảToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormBookReport f2 = new FormBookReport();
+            FormBookReport f2 = new FormBookReport(tenNhanVien);
             f2.Owner = this;
             f2.Show();
         }
@@ -106,8 +93,6 @@ namespace QuanLyThuVien
 
         private void FormIndex_Load(object sender, EventArgs e)
         {
-            // Hiển thị thông tin nhân viên nếu cần
-            MessageBox.Show("Chào mừng nhân viên: " + maNhanVien);
         }
 
         private void đăngXuấtToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -127,6 +112,34 @@ namespace QuanLyThuVien
         private void đổiMậtKhẩuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormAdminInfor f2 = new FormAdminInfor(maNhanVien,taiKhoan);
+            f2.Owner = this;
+            f2.Show();
+        }
+
+        private void quảnLýPhiếuThuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormQLDocGia f2 = new FormQLDocGia();
+            f2.Owner = this;
+            f2.Show();
+        }
+
+        private void quảnLýPhiếuThuToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            FormReceipt f2 = new FormReceipt();
+            f2.Owner = this;
+            f2.Show();
+        }
+
+        private void quảnLýMượnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form7 f2 = new Form7();
+            f2.Owner = this;
+            f2.Show();
+        }
+
+        private void lịchSửTrảSáchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormHistoryReport f2 = new FormHistoryReport();
             f2.Owner = this;
             f2.Show();
         }

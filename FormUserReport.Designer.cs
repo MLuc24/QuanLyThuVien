@@ -33,20 +33,20 @@ namespace QuanLyThuVien
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUserReport));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvDocGia = new System.Windows.Forms.DataGridView();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvTreHan = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -61,10 +61,10 @@ namespace QuanLyThuVien
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.tabControl1.Location = new System.Drawing.Point(-2, -4);
+            this.tabControl1.Location = new System.Drawing.Point(-7, -4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1276, 929);
+            this.tabControl1.Size = new System.Drawing.Size(1311, 929);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
             // 
@@ -78,9 +78,26 @@ namespace QuanLyThuVien
             this.tabPage1.Location = new System.Drawing.Point(8, 47);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1260, 874);
+            this.tabPage1.Size = new System.Drawing.Size(1295, 874);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Độc giả mượn";
+            // 
+            // btnReset
+            // 
+            this.btnReset.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnReset.ImageIndex = 0;
+            this.btnReset.ImageList = this.imageList1;
+            this.btnReset.Location = new System.Drawing.Point(0, 0);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(154, 122);
+            this.btnReset.TabIndex = 57;
+            this.btnReset.UseVisualStyleBackColor = false;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Logo.png");
             // 
             // button1
             // 
@@ -102,7 +119,7 @@ namespace QuanLyThuVien
             this.groupBox4.Font = new System.Drawing.Font("Times New Roman", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupBox4.Location = new System.Drawing.Point(74, 148);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1104, 566);
+            this.groupBox4.Size = new System.Drawing.Size(1157, 566);
             this.groupBox4.TabIndex = 50;
             this.groupBox4.TabStop = false;
             // 
@@ -117,7 +134,7 @@ namespace QuanLyThuVien
             this.dgvDocGia.Name = "dgvDocGia";
             this.dgvDocGia.RowHeadersWidth = 82;
             this.dgvDocGia.RowTemplate.Height = 33;
-            this.dgvDocGia.Size = new System.Drawing.Size(1097, 543);
+            this.dgvDocGia.Size = new System.Drawing.Size(1151, 543);
             this.dgvDocGia.TabIndex = 0;
             // 
             // groupBox6
@@ -137,7 +154,7 @@ namespace QuanLyThuVien
             this.label3.ForeColor = System.Drawing.Color.Red;
             this.label3.Location = new System.Drawing.Point(3, 3);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(1254, 142);
+            this.label3.Size = new System.Drawing.Size(1289, 142);
             this.label3.TabIndex = 49;
             this.label3.Text = "BÁO CÁO THỐNG KÊ ĐỘC GIẢ MƯỢN SÁCH";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -152,10 +169,21 @@ namespace QuanLyThuVien
             this.tabPage2.Location = new System.Drawing.Point(8, 47);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1260, 874);
+            this.tabPage2.Size = new System.Drawing.Size(1295, 874);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Báo cáo độc giả";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.button3.ImageIndex = 0;
+            this.button3.ImageList = this.imageList1;
+            this.button3.Location = new System.Drawing.Point(0, 0);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(154, 122);
+            this.button3.TabIndex = 58;
+            this.button3.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
@@ -178,7 +206,7 @@ namespace QuanLyThuVien
             this.label1.ForeColor = System.Drawing.Color.Red;
             this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1254, 136);
+            this.label1.Size = new System.Drawing.Size(1289, 136);
             this.label1.TabIndex = 52;
             this.label1.Text = "BÁO CÁO THỐNG KÊ ĐỘC GIẢ TRỄ HẠN";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -190,7 +218,7 @@ namespace QuanLyThuVien
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupBox1.Location = new System.Drawing.Point(12, 126);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1220, 566);
+            this.groupBox1.Size = new System.Drawing.Size(1230, 566);
             this.groupBox1.TabIndex = 51;
             this.groupBox1.TabStop = false;
             // 
@@ -201,12 +229,13 @@ namespace QuanLyThuVien
             this.dgvTreHan.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvTreHan.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvTreHan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTreHan.Location = new System.Drawing.Point(6, 23);
+            this.dgvTreHan.Location = new System.Drawing.Point(-12, 16);
             this.dgvTreHan.Name = "dgvTreHan";
             this.dgvTreHan.RowHeadersWidth = 82;
             this.dgvTreHan.RowTemplate.Height = 33;
-            this.dgvTreHan.Size = new System.Drawing.Size(1208, 554);
+            this.dgvTreHan.Size = new System.Drawing.Size(1273, 571);
             this.dgvTreHan.TabIndex = 0;
+            this.dgvTreHan.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTreHan_CellContentClick);
             // 
             // groupBox2
             // 
@@ -217,40 +246,12 @@ namespace QuanLyThuVien
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
             // 
-            // btnReset
-            // 
-            this.btnReset.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnReset.ImageIndex = 0;
-            this.btnReset.ImageList = this.imageList1;
-            this.btnReset.Location = new System.Drawing.Point(0, 0);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(154, 122);
-            this.btnReset.TabIndex = 57;
-            this.btnReset.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.button3.ImageIndex = 0;
-            this.button3.ImageList = this.imageList1;
-            this.button3.Location = new System.Drawing.Point(0, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(154, 122);
-            this.button3.TabIndex = 58;
-            this.button3.UseVisualStyleBackColor = false;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "Logo.png");
-            // 
             // FormUserReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(1269, 925);
+            this.ClientSize = new System.Drawing.Size(1294, 914);
             this.Controls.Add(this.tabControl1);
             this.Name = "FormUserReport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
