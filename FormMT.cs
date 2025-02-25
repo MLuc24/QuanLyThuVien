@@ -195,23 +195,7 @@ namespace QuanLyThuVien
 
         private string GenerateNewMaPhieu()
         {
-            using (SqlConnection connection = new SqlConnection(kn))
-            {
-                connection.Open();
-                string query = "SELECT MAX(sMaphieu) FROM tblPhieumuon";
-                SqlCommand cmd = new SqlCommand(query, connection);
-                object result = cmd.ExecuteScalar();
-
-                if (result != null && result != DBNull.Value)
-                {
-                    string lastMaPhieu = result.ToString();
-                    if (lastMaPhieu.StartsWith("PM") && int.TryParse(lastMaPhieu.Substring(2), out int lastNumber))
-                    {
-                        return "PM" + (lastNumber + 1).ToString("D4"); // Định dạng mã phiếu thành "PM" + 4 chữ số
-                    }
-                }
-                return "PM0001"; // Mã phiếu mặc định nếu không có phiếu nào trong cơ sở dữ liệu
-            }
+            return Library.GenerateNewID("tblPhieumuon", "sMaphieu", "PM", 4);
         }
 
         private void btnGiaHan_Click(object sender, EventArgs e)

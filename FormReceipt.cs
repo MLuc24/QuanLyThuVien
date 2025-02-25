@@ -10,7 +10,6 @@ namespace QuanLyThuVien
     public partial class FormReceipt : Form
     {
         private string kn;
-        private DataTable pt;
 
         public FormReceipt()
         {
@@ -40,35 +39,13 @@ namespace QuanLyThuVien
 
         private void LoadDataDocGia()
         {
-            using (SqlConnection connection = new SqlConnection(kn))
-            {
-                string query = "SELECT sMadocgia, sTendocgia FROM tblDocGia WHERE isDeleted = 0";
-                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-
-                cboDocGia.DataSource = dt;
-                cboDocGia.DisplayMember = "sTendocgia";
-                cboDocGia.ValueMember = "sMadocgia";
-            }
+            Library.LoadComboBox(cboDocGia, "tblDocGia", "sMadocgia", "sTendocgia", true);
         }
 
         private void LoadDataPhieuThu()
         {
-            using(SqlConnection cnn = new SqlConnection(kn))
-            {
-                using (SqlCommand cmd = cnn.CreateCommand())
-                {
-                    cmd.CommandText = "Select * from v_DSPTHU";
-                    using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
-                    {
-                        pt = new DataTable();
-                        ad.Fill(pt);
-                        dgvPhieuThu.DataSource = pt;
-                        dgvPhieuThu.Columns["Ngày thu"].DefaultCellStyle.Format = "dd/MM/yyyy";
-                    }
-                }
-            }
+            Library.LoadDataToGridView(dgvPhieuThu, "Select * from v_DSPTHU");
+            dgvPhieuThu.Columns["Ngày thu"].DefaultCellStyle.Format = "dd/MM/yyyy";
         }
 
         private void cboDocGia_SelectedIndexChanged(object sender, EventArgs e)

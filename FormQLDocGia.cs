@@ -15,7 +15,6 @@ namespace QuanLyThuVien
     public partial class FormQLDocGia : Form
     {
         private string kn;
-        private DataTable tb;
         private bool isAdding = false;
         public FormQLDocGia()
         {
@@ -27,40 +26,14 @@ namespace QuanLyThuVien
 
         private void Loadata()
         {
-            using (SqlConnection cnn = new SqlConnection(kn))
-            {
-                using (SqlCommand cmd = cnn.CreateCommand())
-                {
-                    cmd.CommandText = "Select * from v_DSDG";
-                    using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
-                    {
-                        tb = new DataTable();
-                        ad.Fill(tb);
-                        dsDocgia.DataSource = tb;
-                        dsDocgia.Columns["Ngày sinh"].DefaultCellStyle.Format = "dd/MM/yyyy";
-                        dsDocgia.Columns["Ngày lập thẻ"].DefaultCellStyle.Format = "dd/MM/yyyy";
-                        dsDocgia.Columns["Ngày hết hạn"].DefaultCellStyle.Format = "dd/MM/yyyy";
-                    }
-                }
-            }
+            Library.LoadDataToGridView(dsDocgia, "Select * from v_DSDG");
+            dsDocgia.Columns["Ngày sinh"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            dsDocgia.Columns["Ngày lập thẻ"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            dsDocgia.Columns["Ngày hết hạn"].DefaultCellStyle.Format = "dd/MM/yyyy";
         }
         private void LoadLoaiDG()
         {
-            using (SqlConnection cnn = new SqlConnection(kn))
-            {
-                using (SqlCommand cmd = new SqlCommand("Select * from tblLoaidocgia", cnn))
-                {
-                    using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
-                    {
-                        DataTable theLoaiTable = new DataTable();
-                        ad.Fill(theLoaiTable);
-
-                        cboLoaidocgia.DataSource = theLoaiTable;
-                        cboLoaidocgia.DisplayMember = "sTenloaidocgia";
-                        cboLoaidocgia.ValueMember = "sMaloaidocgia";
-                    }
-                }
-            }
+            Library.LoadComboBox(cboLoaidocgia, "tblLoaidocgia", "sMaloaidocgia", "sTenloaidocgia");
         }
 
         private bool IsMaDGExists(string madg)
@@ -347,24 +320,7 @@ namespace QuanLyThuVien
 
         private string GenerateNewMaDocGia()
         {
-            using (SqlConnection cnn = new SqlConnection(kn))
-            {
-                cnn.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT TOP 1 sMadocgia FROM tblDocgia ORDER BY sMadocgia DESC", cnn))
-                {
-                    var result = cmd.ExecuteScalar();
-                    if (result != null)
-                    {
-                        string lastMaDG = result.ToString();
-                        int number = int.Parse(lastMaDG.Substring(2)) + 1; // Lấy số và tăng lên
-                        return "DG" + number.ToString("D4"); // Định dạng DG0001
-                    }
-                    else
-                    {
-                        return "DG0001"; // Nếu chưa có độc giả nào
-                    }
-                }
-            }
+            return Library.GenerateNewID("tblDocgia", "sMadocgia", "DG", 4);
         }
 
 

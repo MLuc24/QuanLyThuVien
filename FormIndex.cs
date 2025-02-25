@@ -72,7 +72,7 @@ namespace QuanLyThuVien
 
         private void báoCáoThểLoạiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormUserReport f2 = new FormUserReport();
+            FormUserReport f2 = new FormUserReport(tenNhanVien);
             f2.Owner = this;
             f2.Show();
         }

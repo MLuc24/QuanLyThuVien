@@ -78,7 +78,7 @@ namespace QuanLyThuVien
             this.btnXem.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnXem.ImageKey = "Xóa.png";
             this.btnXem.ImageList = this.imageList2;
-            this.btnXem.Location = new System.Drawing.Point(485, 821);
+            this.btnXem.Location = new System.Drawing.Point(460, 797);
             this.btnXem.Name = "btnXem";
             this.btnXem.Size = new System.Drawing.Size(145, 73);
             this.btnXem.TabIndex = 49;
@@ -99,7 +99,7 @@ namespace QuanLyThuVien
             this.groupBox8.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupBox8.Location = new System.Drawing.Point(36, 475);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(1058, 318);
+            this.groupBox8.Size = new System.Drawing.Size(1035, 306);
             this.groupBox8.TabIndex = 48;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Danh sách sách đang mượn";
@@ -111,7 +111,7 @@ namespace QuanLyThuVien
             this.dgvPhieuCT.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvPhieuCT.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvPhieuCT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPhieuCT.Location = new System.Drawing.Point(16, 34);
+            this.dgvPhieuCT.Location = new System.Drawing.Point(6, 34);
             this.dgvPhieuCT.Name = "dgvPhieuCT";
             this.dgvPhieuCT.RowHeadersWidth = 82;
             this.dgvPhieuCT.RowTemplate.Height = 33;
@@ -426,6 +426,7 @@ namespace QuanLyThuVien
             this.Name = "FormCTmuontra";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Danh sách chi tiết";
+            this.Load += new System.EventHandler(this.FormCTmuontra_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormCTmuontra_KeyDown);
             this.groupBox8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhieuCT)).EndInit();

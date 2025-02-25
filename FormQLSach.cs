@@ -10,9 +10,7 @@ namespace QuanLyThuVien
     public partial class FormQLSach : Form
     {
         private string ketnoi;
-        private DataTable tb;
         private bool isAdding = false;
-
 
         public FormQLSach()
         {
@@ -24,52 +22,13 @@ namespace QuanLyThuVien
 
         private void LoadData()
         {
-            using (SqlConnection cnn = new SqlConnection(ketnoi))
-            {
-                using (SqlCommand cmd = new SqlCommand("Select * from v_DSS", cnn))
-                {
-                    using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
-                    {
-                        tb = new DataTable();
-                        ad.Fill(tb);
-                        dssach.DataSource = tb;
-                        dssach.Columns["Ngày nhập"].DefaultCellStyle.Format = "dd/MM/yyyy";
-                    }
-                }
-            }
+            Library.LoadDataToGridView(dssach, "Select * from v_DSS");
+            dssach.Columns["Ngày nhập"].DefaultCellStyle.Format = "dd/MM/yyyy";
         }
 
         private void LoadTheLoai()
         {
-            using (SqlConnection cnn = new SqlConnection(ketnoi))
-            {
-                using (SqlCommand cmd = new SqlCommand("Select * from tblTheloai", cnn))
-                {
-                    using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
-                    {
-                        DataTable theLoaiTable = new DataTable();
-                        ad.Fill(theLoaiTable);
-
-                        cboMatheloai.DataSource = theLoaiTable;
-                        cboMatheloai.DisplayMember = "sTentheloai";
-                        cboMatheloai.ValueMember = "sMatheloai";   
-                    }
-                }
-            }
-        }
-
-        private bool IsMaSachExists(string maSach)
-        {
-            using (SqlConnection cnn = new SqlConnection(ketnoi))
-            {
-                cnn.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM tblSach WHERE sMasach = @MaSach", cnn))
-                {
-                    cmd.Parameters.AddWithValue("@MaSach", maSach);
-                    int count = (int)cmd.ExecuteScalar();
-                    return count > 0;
-                }
-            }
+            Library.LoadComboBox(cboMatheloai, "tblTheloai", "sMatheloai", "sTentheloai");
         }
 
         private bool IsTenSachExists(string tenSach)
@@ -171,24 +130,7 @@ namespace QuanLyThuVien
 
         private string GenerateNewMaSach()
         {
-            using (SqlConnection cnn = new SqlConnection(ketnoi))
-            {
-                cnn.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT TOP 1 sMasach FROM tblSach ORDER BY sMasach DESC", cnn))
-                {
-                    var result = cmd.ExecuteScalar();
-                    if (result != null)
-                    {
-                        string lastMaSach = result.ToString();
-                        int number = int.Parse(lastMaSach.Substring(1)) + 1; // Lấy số và tăng lên
-                        return "S" + number.ToString("D4"); // Định dạng S0001
-                    }
-                    else
-                    {
-                        return "S0001"; // Nếu chưa có sách nào
-                    }
-                }
-            }
+            return Library.GenerateNewID("tblSach", "sMasach", "S", 4);
         }
 
         private void ClearTextBoxes()
@@ -304,15 +246,12 @@ namespace QuanLyThuVien
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // Gọi các phương thức Validating một cách thủ công
-            txtMasach_Validating(txtMasach, new CancelEventArgs());
             txtTensach_Validating(txtTensach, new CancelEventArgs());
             txtSl_Validating(txtSl, new CancelEventArgs());
             txtDongia_Validating(txtDongia, new CancelEventArgs());
 
             // Kiểm tra xem có lỗi nào không
             bool hasErrors =
-                !string.IsNullOrEmpty(errorProvider1.GetError(txtMasach)) ||
                 !string.IsNullOrEmpty(errorProvider2.GetError(txtTensach)) ||
                 !string.IsNullOrEmpty(errorProvider3.GetError(txtSl)) ||
                 !string.IsNullOrEmpty(errorProvider4.GetError(txtDongia));
@@ -470,18 +409,6 @@ namespace QuanLyThuVien
                 if (!int.TryParse(txtDongia.Text, out int sl) || sl < 1)
                     errorProvider4.SetError(txtDongia, "Đơn giá không được âm!");
                 else errorProvider4.SetError(txtDongia, "");
-            }
-        }
-
-        private void txtMasach_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtMasach.Text))
-                errorProvider1.SetError(txtMasach, "Mã sách không được để trống!");
-            else
-            {
-                if (isAdding && IsMaSachExists(txtMasach.Text))
-                    errorProvider1.SetError(txtMasach, "Sách này đã tồn tại!");
-                else errorProvider1.SetError(txtMasach, "");
             }
         }
 

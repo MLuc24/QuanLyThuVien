@@ -296,6 +296,11 @@ namespace QuanLyThuVien
             }
 
         }
+
+        private void FormCTmuontra_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

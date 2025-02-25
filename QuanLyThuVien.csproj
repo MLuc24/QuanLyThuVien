@@ -148,6 +148,7 @@
     <Compile Include="FormBookReport.Designer.cs">
       <DependentUpon>FormBookReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Library.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CrystalReport1.rpt">

@@ -15,7 +15,6 @@ namespace QuanLyThuVien
     public partial class FormUser : Form
     {
         private string ketnoi;
-        private DataTable tb;
         private string maDocGia;
         private string taiKhoan;
 
@@ -34,18 +33,7 @@ namespace QuanLyThuVien
 
         private void LoadDataSACH()
         {
-            using (SqlConnection cnn = new SqlConnection(ketnoi))
-            {
-                using (SqlCommand cmd = new SqlCommand("Select * from v_DSS1", cnn))
-                {
-                    using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
-                    {
-                        tb = new DataTable();
-                        ad.Fill(tb);
-                        dssach.DataSource = tb;
-                    }
-                }
-            }
+            Library.LoadDataToGridView(dssach, "Select * from v_DSS1");
         }
 
         private void LoadDataDocGia()
@@ -89,23 +77,7 @@ namespace QuanLyThuVien
 
         private void LoadTheLoai()
         {
-            using (SqlConnection cnn = new SqlConnection(ketnoi))
-            {
-                cnn.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT sMaloaidocgia, sTenloaidocgia FROM tblLoaidocgia", cnn))
-                {
-                    using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
-                    {
-                        DataTable theLoaiTable = new DataTable();
-                        ad.Fill(theLoaiTable);
-
-                        // Gán dữ liệu vào ComboBox
-                        cboLoaidocgia.DataSource = theLoaiTable;
-                        cboLoaidocgia.DisplayMember = "sTenloaidocgia"; // Hiển thị tên thể loại
-                        cboLoaidocgia.ValueMember = "sMaloaidocgia";    // Lưu mã thể loại
-                    }
-                }
-            }
+            Library.LoadComboBox(cboLoaidocgia, "tblLoaidocgia", "sMaloaidocgia", "sTenloaidocgia");
         }
 
         private void PerformSearch()
@@ -282,6 +254,7 @@ namespace QuanLyThuVien
             btnLuu.Enabled = true;
             btnHuy.Enabled = true;
         }
+
         private void ShowData(string filter = "")
         {
             string querySelect = "SELECT * FROM v_DSS1"; // Truy vấn cơ bản từ bảng v_DSS1

@@ -360,7 +360,6 @@ namespace QuanLyThuVien
             this.txtMasach.Name = "txtMasach";
             this.txtMasach.Size = new System.Drawing.Size(250, 31);
             this.txtMasach.TabIndex = 10;
-            this.txtMasach.Validating += new System.ComponentModel.CancelEventHandler(this.txtMasach_Validating);
             // 
             // label10
             // 

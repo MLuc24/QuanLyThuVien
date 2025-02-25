@@ -10,7 +10,6 @@ namespace QuanLyThuVien
     public partial class FormHistoryReport : Form
     {
         private string kn;
-        private DataTable pt;
         public FormHistoryReport()
         {
             InitializeComponent();
@@ -23,16 +22,9 @@ namespace QuanLyThuVien
 
         private void LoadData()
         {
-            using (SqlConnection connection = new SqlConnection(kn))
-            {
-                string query = "SELECT * FROM v_DSPT";
-                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                pt = new DataTable();
-                adapter.Fill(pt);
-                dgvPhieuMuonTra.DataSource = pt;
-                dgvPhieuMuonTra.Columns["Ngày trả"].DefaultCellStyle.Format = "dd/MM/yyyy";
-                dgvPhieuMuonTra.Columns["Ngày hẹn trả"].DefaultCellStyle.Format = "dd/MM/yyyy";
-            }
+            Library.LoadDataToGridView(dgvPhieuMuonTra, "Select * from v_DSPT");
+            dgvPhieuMuonTra.Columns["Ngày trả"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            dgvPhieuMuonTra.Columns["Ngày hẹn trả"].DefaultCellStyle.Format = "dd/MM/yyyy";
         }
 
         private void dgvPhieuMuonTra_SelectionChanged(object sender, EventArgs e)
