@@ -130,7 +130,7 @@ namespace QuanLyThuVien
             this.txtMk.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMk_KeyDown);
             this.txtMk.Leave += new System.EventHandler(this.txtMk_Leave_1);
             // 
-            // Form4
+            // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -142,11 +142,10 @@ namespace QuanLyThuVien
             this.Controls.Add(this.txtTaiKhoan);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form4";
+            this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Tag = "";
             this.Text = "Đăng nhập";
-            this.Load += new System.EventHandler(this.Form4_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

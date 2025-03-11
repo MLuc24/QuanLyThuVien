@@ -79,22 +79,7 @@ namespace QuanLyThuVien
             }
         }
 
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form10_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvTreHan_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void btnReport2_Click(object sender, EventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(kn))
             {
@@ -119,7 +104,9 @@ namespace QuanLyThuVien
                 da.Fill(ds, "Danhsach");
 
                 // Tạo báo cáo Crystal Report
+                string reportPath = Application.StartupPath + @"\Report\CrystalReport1.rpt";
                 CrystalReport1 rpt = new CrystalReport1();
+                rpt.Load(reportPath);
                 rpt.SetDataSource(ds.Tables[1]);
 
                 // Truyền giá trị "Tên nhân viên" vào báo cáo
@@ -130,6 +117,11 @@ namespace QuanLyThuVien
                 f.crystalReportViewer1.ReportSource = rpt;
                 f.ShowDialog();
             }
+        }
+
+        private void FormUserReport_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

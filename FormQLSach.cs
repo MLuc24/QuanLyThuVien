@@ -110,7 +110,7 @@ namespace QuanLyThuVien
                 txtNXB.Text = selectedRow.Cells["NXB"].Value.ToString();
                 txtSl.Text = selectedRow.Cells["Số lượng"].Value.ToString();
                 txtDongia.Text = selectedRow.Cells["Đơn giá"].Value.ToString();
-                cboMatheloai.SelectedValue = selectedRow.Cells["Mã thể loại"].Value.ToString();
+                cboMatheloai.Text = selectedRow.Cells["Thể loại"].Value.ToString(); // Hiển thị tên thể loại
                 rdoMoi.Checked = selectedRow.Cells["Tình trạng"].Value.ToString() == "Mới";
                 rdoCu.Checked = selectedRow.Cells["Tình trạng"].Value.ToString() == "Cũ";
                 dateTimePicker1.Value = Convert.ToDateTime(selectedRow.Cells["Ngày nhập"].Value);
@@ -121,11 +121,17 @@ namespace QuanLyThuVien
                 btnEdit.Enabled = true;
                 btnSave.Enabled = false;
                 btnCancel.Enabled = false;
-                errorProvider1.SetError(txtMasach, "");
-                errorProvider2.SetError(txtTensach, "");
-                errorProvider3.SetError(txtSl, "");
-                errorProvider4.SetError(txtDongia, "");
+                ClearError();
             }
+        }
+
+        public void ClearError()
+        {
+            errorProvider1.SetError(txtMasach, "");
+            errorProvider2.SetError(txtTensach, "");
+            errorProvider3.SetError(txtSl, "");
+            errorProvider4.SetError(txtDongia, "");
+            errorProvider5.SetError(dateTimePicker1, "");
         }
 
         private string GenerateNewMaSach()
@@ -156,7 +162,7 @@ namespace QuanLyThuVien
             txtMasach.Enabled = false;
             cboMatheloai.SelectedIndex = 0;
             rdoMoi.Checked = true;
-
+            dateTimePicker1.Enabled = false;
             btnSave.Enabled = true;
             btnCancel.Enabled = true;
             btnAdd.Enabled = false;
@@ -234,10 +240,7 @@ namespace QuanLyThuVien
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            errorProvider1.SetError(txtMasach, "");
-            errorProvider2.SetError(txtTensach, "");
-            errorProvider3.SetError(txtSl, "");
-            errorProvider4.SetError(txtDongia, "");
+            ClearError();
 
             InitializeControls();
             isAdding = false;
@@ -249,12 +252,14 @@ namespace QuanLyThuVien
             txtTensach_Validating(txtTensach, new CancelEventArgs());
             txtSl_Validating(txtSl, new CancelEventArgs());
             txtDongia_Validating(txtDongia, new CancelEventArgs());
+            dateTimePicker1_Validating(dateTimePicker1, new CancelEventArgs());
 
             // Kiểm tra xem có lỗi nào không
             bool hasErrors =
                 !string.IsNullOrEmpty(errorProvider2.GetError(txtTensach)) ||
                 !string.IsNullOrEmpty(errorProvider3.GetError(txtSl)) ||
-                !string.IsNullOrEmpty(errorProvider4.GetError(txtDongia));
+                !string.IsNullOrEmpty(errorProvider4.GetError(txtDongia)) ||
+                !string.IsNullOrEmpty(errorProvider5.GetError(dateTimePicker1));
 
             // Nếu có lỗi, không thực hiện lưu
             if (hasErrors)
@@ -379,10 +384,7 @@ namespace QuanLyThuVien
             rdoMaSach.Checked = false;
             rdoTheLoai.Checked = false;
 
-            errorProvider1.Clear();
-            errorProvider2.Clear();
-            errorProvider3.Clear();
-            errorProvider4.Clear();
+            ClearError();
 
             txtTimkiem.Text = string.Empty;
         }
@@ -453,6 +455,31 @@ namespace QuanLyThuVien
                     this.Close();
                 }
             }
+        }
+
+        private void dateTimePicker1_Validating(object sender, CancelEventArgs e)
+        {
+            DateTime today = DateTime.Now.Date;
+
+            if (dateTimePicker1.Value.Date > today)
+            {
+                errorProvider5.SetError(dateTimePicker1, "Ngày nhập không hợp lệ!.");
+            }
+            else
+            {
+                errorProvider5.SetError(dateTimePicker1, ""); // Xóa lỗi nếu hợp lệ
+            }
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            FormBaoCao reportForm = new FormBaoCao();
+            reportForm.ShowDialog();
+        }
+
+        private void dssach_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
 

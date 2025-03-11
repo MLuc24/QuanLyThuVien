@@ -11,13 +11,14 @@ namespace QuanLyThuVien
     {
         private string kn;
         private DataTable pm;
+        private string tenNhanVien;
         private DataTable dtSachGoc;
         private bool isCreatingNewPhieu = false;
         private string tempNewMaPhieu;
         public enum Mode { None, LapPhieu, GiaHan, ThemChiTiet }
         private Mode currentMode = Mode.None;
 
-        public Form7()
+        public Form7(string tenNV)
         {
             InitializeComponent();
             kn = ConfigurationManager.ConnectionStrings["qltv"].ConnectionString;
@@ -28,6 +29,7 @@ namespace QuanLyThuVien
             InitializeControlsPT();
             InitializeListView();
             this.KeyPreview = true;
+            this.tenNhanVien = tenNV;
         }
 
         /*-------------------------------------Mượn sách------------------------------------------------------*/
@@ -156,6 +158,7 @@ namespace QuanLyThuVien
             btnGiaHan.Enabled = false;
 
             // Đặt ngày mượn là ngày hiện tại
+            dtpNgayMuon.Enabled = false;
             dtpNgayMuon.Value = DateTime.Now;
 
             // Đặt ngày hẹn trả là ngày hiện tại cộng thêm 1 tháng
@@ -185,7 +188,6 @@ namespace QuanLyThuVien
             cboMaSach.SelectedIndex = -1; // Đặt cboMaSach không chọn bất kỳ sách nào
 
             cboMaDocGia.Enabled = true;
-            dtpNgayMuon.Enabled = true;
             dtpHanThe.Enabled = false;
 
             // Đặt chế độ hiện tại là "Lập phiếu"
@@ -355,19 +357,6 @@ namespace QuanLyThuVien
             }
         }
 
-        private bool IsSachDaMuonTrongPhieu(string maPhieu, string maSach)
-        {
-            using (SqlConnection connection = new SqlConnection(kn))
-            {
-                connection.Open();
-                string query = "SELECT COUNT(*) FROM tblCTmuontra WHERE sMaphieu = @MaPhieu AND sMasach = @MaSach ";
-                SqlCommand cmd = new SqlCommand(query, connection);
-                cmd.Parameters.AddWithValue("@MaPhieu", maPhieu);
-                cmd.Parameters.AddWithValue("@MaSach", maSach);
-                int count = Convert.ToInt32(cmd.ExecuteScalar());
-                return count > 0;
-            }
-        }
 
         private void SaveChiTietMuonTra()
         {
@@ -431,15 +420,17 @@ namespace QuanLyThuVien
             }
         }
 
-
-
         private void btnLuu_Click(object sender, EventArgs e)
-        {
+        {          
             /// Kiểm tra dữ liệu hợp lệ
             txtSoLuong_Validating(txtSoLuong, new CancelEventArgs());
             cboMaDocGia_Validating(cboMaDocGia, new CancelEventArgs());
+            dtpNgayHenTra_Validating(dtpNgayHenTra, new CancelEventArgs());
+            dtpNgayMuon_Validating(dtpNgayMuon, new CancelEventArgs());
             bool hasErrors = !string.IsNullOrEmpty(errorProvider1.GetError(txtSoLuong)) ||
-                             !string.IsNullOrEmpty(errorProvider2.GetError(cboMaDocGia));
+                             !string.IsNullOrEmpty(errorProvider2.GetError(cboMaDocGia)) ||
+                             !string.IsNullOrEmpty(errorProvider3.GetError(dtpNgayMuon)) ||
+                             !string.IsNullOrEmpty(errorProvider4.GetError(dtpNgayHenTra));
             if (hasErrors)
             {
                 MessageBox.Show("Vui lòng kiểm tra lại các thông tin nhập vào!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -474,9 +465,7 @@ namespace QuanLyThuVien
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            errorProvider1.SetError(txtSoLuong, "");
-            errorProvider2.SetError(cboMaDocGia, "");
-
+            ClearError();
             InitializeControls();
             isCreatingNewPhieu = false;
             tempNewMaPhieu = null;
@@ -504,6 +493,14 @@ namespace QuanLyThuVien
             dtpNgayMuon.Value = DateTime.Now;
             dtpNgayHenTra.Value = DateTime.Now.AddDays(7); // Đặt lại ngày hẹn trả mặc định
             dtpHanThe.Value = DateTime.Now.AddYears(1); // Đặt lại hạn thẻ cách ngày hiện tại 1 năm
+        }
+
+        public void ClearError()
+        {
+            errorProvider1.SetError(txtSoLuong, "");
+            errorProvider2.SetError(cboMaDocGia, "");
+            errorProvider3.SetError(dtpNgayMuon, "");
+            errorProvider4.SetError(dtpNgayHenTra, "");
         }
 
         private void dgvPhieuMuon_SelectionChanged(object sender, EventArgs e)
@@ -538,8 +535,7 @@ namespace QuanLyThuVien
 
                 // Vô hiệu hóa các control khi xem thông tin
                 DisableControls();
-                errorProvider1.SetError(txtSoLuong, "");
-                errorProvider2.SetError(cboMaDocGia, "");
+                ClearError();
                 btnLap.Enabled = true;
                 btnGiaHan.Enabled = true;
                 btnLuu.Enabled = false; // Vô hiệu hóa nút Lưu
@@ -696,9 +692,7 @@ namespace QuanLyThuVien
         {
             // Đặt lại trạng thái lập phiếu
             isCreatingNewPhieu = false;
-            tempNewMaPhieu = null;
-
-            // Xóa dữ liệu trong các control
+            ClearError();
             ClearControls();
 
             // Tải lại dữ liệu từ cơ sở dữ liệu
@@ -735,6 +729,20 @@ namespace QuanLyThuVien
                 else errorProvider1.SetError(txtSoLuong, "");
             }
 
+        }
+
+        private void dtpNgayMuon_Validating(object sender, CancelEventArgs e)
+        {
+            DateTime today = DateTime.Now.Date;
+
+            if (dtpNgayMuon.Value.Date != today)
+            {
+                errorProvider1.SetError(dtpNgayMuon, "Ngày mượn phải là ngày hiện tại.");
+            }
+            else
+            {
+                errorProvider1.SetError(dtpNgayMuon, ""); // Xóa lỗi nếu hợp lệ
+            }
         }
 
         private void PerformSearch()
@@ -797,51 +805,23 @@ namespace QuanLyThuVien
             PerformSearch();
         }
 
-        private void dtpNgayHenTra_ValueChanged(object sender, EventArgs e)
+        private void dtpNgayHenTra_Validating(object sender, CancelEventArgs e)
         {
-            // Kiểm tra khi đang ở chế độ lập phiếu mới hoặc thêm chi tiết
-            if (currentMode == Mode.LapPhieu || currentMode == Mode.ThemChiTiet)
+            DateTime ngayMuon = dtpNgayMuon.Value.Date;
+            DateTime ngayHenTra = dtpNgayHenTra.Value.Date;
+            DateTime hanThe = dtpHanThe.Value.Date;
+
+            if (ngayHenTra < ngayMuon.AddDays(7))
             {
-                DateTime ngayMuon = dtpNgayMuon.Value;
-                DateTime ngayHenTra = dtpNgayHenTra.Value;
-                DateTime hanThe = dtpHanThe.Value;
-
-                // Kiểm tra ngày hẹn trả phải lớn hơn ngày mượn ít nhất 1 tuần
-                if (ngayHenTra <= ngayMuon.AddDays(6))
-                {
-                    MessageBox.Show("Ngày hẹn trả phải cách ngày mượn ít nhất 1 tuần!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    dtpNgayHenTra.Value = ngayMuon.AddDays(7); // Đặt lại ngày hẹn trả mặc định
-                }
-
-                // Kiểm tra ngày hẹn trả không được lớn hơn hạn thẻ
-                if (ngayHenTra > hanThe)
-                {
-                    MessageBox.Show("Ngày hẹn trả không được lớn hơn hạn thẻ của độc giả!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    dtpNgayHenTra.Value = hanThe; // Đặt lại ngày hẹn trả bằng hạn thẻ
-                }
+                errorProvider4.SetError(dtpNgayHenTra, "Ngày hẹn trả phải cách ngày mượn ít nhất 1 tuần!");
             }
-
-            // Kiểm tra khi đang ở chế độ gia hạn
-            if (currentMode == Mode.GiaHan && dgvPhieuMuon.SelectedRows.Count > 0)
+            else if (ngayHenTra > hanThe)
             {
-                // Lấy ngày hẹn trả cũ từ hàng được chọn trong DataGridView
-                var selectedRow = dgvPhieuMuon.SelectedRows[0];
-                DateTime oldNgayHenTra = Convert.ToDateTime(selectedRow.Cells["Ngày hẹn trả"].Value);
-
-                // Kiểm tra ngày gia hạn mới phải lớn hơn ngày gia hạn cũ
-                if (dtpNgayHenTra.Value <= oldNgayHenTra)
-                {
-                    MessageBox.Show("Ngày gia hạn phải lớn hơn ngày gia hạn cũ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    dtpNgayHenTra.Value = oldNgayHenTra.AddDays(1); // Đặt lại ngày gia hạn mặc định
-                }
-
-                // Kiểm tra ngày hẹn trả không được lớn hơn hạn thẻ
-                DateTime hanThe = dtpHanThe.Value;
-                if (dtpNgayHenTra.Value > hanThe)
-                {
-                    MessageBox.Show("Ngày hẹn trả không được lớn hơn hạn thẻ của độc giả!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    dtpNgayHenTra.Value = hanThe; // Đặt lại ngày hẹn trả bằng hạn thẻ
-                }
+                errorProvider4.SetError(dtpNgayHenTra, "Ngày hẹn trả không thể vượt quá hạn thẻ!");
+            }
+            else
+            {
+                errorProvider4.SetError(dtpNgayHenTra, "");
             }
         }
 
@@ -893,7 +873,8 @@ namespace QuanLyThuVien
 
                     string tenSach = selectedRow["sTensach"].ToString();
                     string theLoai = selectedRow["sTentheloai"].ToString();
-                    string nxb = dtSach.Columns.Contains("sNhaxuatban") ? selectedRow["sNhaxuatban"].ToString() : "N/A";
+                    //string nxb = dtSach.Columns.Contains("sNhaxuatban") ? selectedRow["sNhaxuatban"].ToString() : "N/A";
+                    string nxb = dtSach.Columns.Contains("sNhaxuatban") ? selectedRow["sNhaxuatban"].ToString(): "Kim Đồng";
 
                     // Kiểm tra xem sách đã có trong ListView chưa
                     bool exists = false;
@@ -1163,7 +1144,7 @@ namespace QuanLyThuVien
                 string maPhieu = dgvPhieu.SelectedRows[0].Cells["Mã phiếu"].Value.ToString();
 
                 // Mở form chi tiết phiếu mượn và truyền mã phiếu
-                FormCTmuontra formChiTiet = new FormCTmuontra(maPhieu);
+                FormCTmuontra formChiTiet = new FormCTmuontra(maPhieu,tenNhanVien);
                 formChiTiet.ShowDialog();
             }
             else

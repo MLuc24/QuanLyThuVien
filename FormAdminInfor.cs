@@ -88,26 +88,6 @@ namespace QuanLyThuVien
             btnHuy.Enabled = false;
         }
 
-        private bool ValidateFields()
-        {
-            if (string.IsNullOrWhiteSpace(txtTenNV.Text))
-            {
-                MessageBox.Show("Tên nhân viên không được để trống!", "Lỗi");
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(txtEmail.Text) || !txtEmail.Text.EndsWith("@gmail.com"))
-            {
-                MessageBox.Show("Email không hợp lệ!", "Lỗi");
-                return false;
-            }
-            if (txtSdt.Text.Length != 10 || !txtSdt.Text.All(char.IsDigit))
-            {
-                MessageBox.Show("Số điện thoại phải có 10 chữ số!", "Lỗi");
-                return false;
-            }
-            return true;
-        }
-
         private void FormAdminInfor_Load(object sender, EventArgs e)
         {
 
@@ -120,7 +100,6 @@ namespace QuanLyThuVien
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            this.ValidateChildren(); // Kiểm tra tất cả các lỗi
 
             // Kiểm tra xem có lỗi nào không
             bool hasErrors =

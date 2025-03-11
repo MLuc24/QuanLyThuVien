@@ -35,7 +35,7 @@ namespace QuanLyThuVien
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnSave = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnHome = new System.Windows.Forms.Button();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
@@ -76,7 +76,7 @@ namespace QuanLyThuVien
             this.btnCancel.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnCancel.ImageKey = "Hủy.jpg";
             this.btnCancel.ImageList = this.imageList1;
-            this.btnCancel.Location = new System.Drawing.Point(768, 477);
+            this.btnCancel.Location = new System.Drawing.Point(629, 477);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(145, 73);
             this.btnCancel.TabIndex = 28;
@@ -95,6 +95,7 @@ namespace QuanLyThuVien
             this.imageList1.Images.SetKeyName(2, "Sửa.jpg");
             this.imageList1.Images.SetKeyName(3, "Thêm.png");
             this.imageList1.Images.SetKeyName(4, "Xóa.png");
+            this.imageList1.Images.SetKeyName(5, "in.jpg");
             // 
             // btnSave
             // 
@@ -102,7 +103,7 @@ namespace QuanLyThuVien
             this.btnSave.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnSave.ImageIndex = 1;
             this.btnSave.ImageList = this.imageList1;
-            this.btnSave.Location = new System.Drawing.Point(611, 477);
+            this.btnSave.Location = new System.Drawing.Point(466, 477);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(145, 73);
             this.btnSave.TabIndex = 27;
@@ -118,7 +119,7 @@ namespace QuanLyThuVien
             this.btnDelete.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnDelete.ImageIndex = 4;
             this.btnDelete.ImageList = this.imageList1;
-            this.btnDelete.Location = new System.Drawing.Point(454, 477);
+            this.btnDelete.Location = new System.Drawing.Point(303, 477);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(145, 73);
             this.btnDelete.TabIndex = 26;
@@ -128,20 +129,21 @@ namespace QuanLyThuVien
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // btnEdit
+            // btnPrint
             // 
-            this.btnEdit.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnEdit.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnEdit.ImageIndex = 2;
-            this.btnEdit.ImageList = this.imageList1;
-            this.btnEdit.Location = new System.Drawing.Point(297, 477);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(145, 73);
-            this.btnEdit.TabIndex = 25;
-            this.btnEdit.Text = " Sửa";
-            this.btnEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnPrint.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnPrint.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnPrint.ImageIndex = 5;
+            this.btnPrint.ImageList = this.imageList1;
+            this.btnPrint.Location = new System.Drawing.Point(792, 477);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(145, 73);
+            this.btnPrint.TabIndex = 25;
+            this.btnPrint.Text = "  Xuất";
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnAdd
             // 
@@ -153,7 +155,7 @@ namespace QuanLyThuVien
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(145, 73);
             this.btnAdd.TabIndex = 24;
-            this.btnAdd.Text = " Thêm";
+            this.btnAdd.Text = " Lập";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -280,6 +282,7 @@ namespace QuanLyThuVien
             this.txtMaPhieuThu.Name = "txtMaPhieuThu";
             this.txtMaPhieuThu.Size = new System.Drawing.Size(283, 35);
             this.txtMaPhieuThu.TabIndex = 10;
+            this.txtMaPhieuThu.TextChanged += new System.EventHandler(this.txtMaPhieuThu_TextChanged);
             // 
             // label9
             // 
@@ -416,7 +419,7 @@ namespace QuanLyThuVien
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnEdit);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.groupBox5);
@@ -445,7 +448,7 @@ namespace QuanLyThuVien
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.GroupBox groupBox5;

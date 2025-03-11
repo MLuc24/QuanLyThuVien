@@ -86,7 +86,7 @@ namespace QuanLyThuVien
 
         private void quảnLýPhiếuThuToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormReceipt f2 = new FormReceipt();
+            FormReceipt f2 = new FormReceipt(tenNhanVien);
             f2.Owner = this;
             f2.Show();
         }
@@ -125,14 +125,14 @@ namespace QuanLyThuVien
 
         private void quảnLýPhiếuThuToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            FormReceipt f2 = new FormReceipt();
+            FormReceipt f2 = new FormReceipt(tenNhanVien);
             f2.Owner = this;
             f2.Show();
         }
 
         private void quảnLýMượnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form7 f2 = new Form7();
+            Form7 f2 = new Form7(tenNhanVien);
             f2.Owner = this;
             f2.Show();
         }

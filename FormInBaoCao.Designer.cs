@@ -50,8 +50,10 @@ namespace QuanLyThuVien
             this.ClientSize = new System.Drawing.Size(1430, 976);
             this.Controls.Add(this.crystalReportViewer1);
             this.Name = "FormInBaoCao";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormInBaoCao";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FormInBaoCao_Load);
             this.ResumeLayout(false);
 
         }

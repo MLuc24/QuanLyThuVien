@@ -71,9 +71,11 @@ namespace QuanLyThuVien
             this.rdoTenSach = new System.Windows.Forms.RadioButton();
             this.rdoMaSach = new System.Windows.Forms.RadioButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnReport = new System.Windows.Forms.Button();
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider5 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dssach)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -84,6 +86,7 @@ namespace QuanLyThuVien
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -93,7 +96,7 @@ namespace QuanLyThuVien
             this.errorProvider1.SetIconAlignment(this.btnCancel, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
             this.btnCancel.ImageKey = "Hủy.jpg";
             this.btnCancel.ImageList = this.imageList1;
-            this.btnCancel.Location = new System.Drawing.Point(893, 557);
+            this.btnCancel.Location = new System.Drawing.Point(844, 557);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(145, 73);
             this.btnCancel.TabIndex = 19;
@@ -113,6 +116,7 @@ namespace QuanLyThuVien
             this.imageList1.Images.SetKeyName(3, "Xóa.png");
             this.imageList1.Images.SetKeyName(4, "Thêm.png");
             this.imageList1.Images.SetKeyName(5, "Logo.png");
+            this.imageList1.Images.SetKeyName(6, "in.jpg");
             // 
             // btnSave
             // 
@@ -121,7 +125,7 @@ namespace QuanLyThuVien
             this.errorProvider1.SetIconAlignment(this.btnSave, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
             this.btnSave.ImageIndex = 1;
             this.btnSave.ImageList = this.imageList1;
-            this.btnSave.Location = new System.Drawing.Point(736, 557);
+            this.btnSave.Location = new System.Drawing.Point(686, 557);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(145, 73);
             this.btnSave.TabIndex = 18;
@@ -138,7 +142,7 @@ namespace QuanLyThuVien
             this.errorProvider1.SetIconAlignment(this.btnDelete, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
             this.btnDelete.ImageIndex = 3;
             this.btnDelete.ImageList = this.imageList1;
-            this.btnDelete.Location = new System.Drawing.Point(579, 557);
+            this.btnDelete.Location = new System.Drawing.Point(528, 557);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(145, 73);
             this.btnDelete.TabIndex = 17;
@@ -155,7 +159,7 @@ namespace QuanLyThuVien
             this.errorProvider1.SetIconAlignment(this.btnEdit, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
             this.btnEdit.ImageIndex = 2;
             this.btnEdit.ImageList = this.imageList1;
-            this.btnEdit.Location = new System.Drawing.Point(422, 557);
+            this.btnEdit.Location = new System.Drawing.Point(370, 557);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(145, 73);
             this.btnEdit.TabIndex = 16;
@@ -172,7 +176,7 @@ namespace QuanLyThuVien
             this.errorProvider1.SetIconAlignment(this.btnAdd, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
             this.btnAdd.ImageIndex = 4;
             this.btnAdd.ImageList = this.imageList1;
-            this.btnAdd.Location = new System.Drawing.Point(265, 557);
+            this.btnAdd.Location = new System.Drawing.Point(212, 557);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(145, 73);
             this.btnAdd.TabIndex = 15;
@@ -223,6 +227,7 @@ namespace QuanLyThuVien
             this.dssach.RowTemplate.Height = 33;
             this.dssach.Size = new System.Drawing.Size(1263, 291);
             this.dssach.TabIndex = 0;
+            this.dssach.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dssach_CellContentClick);
             this.dssach.SelectionChanged += new System.EventHandler(this.dssach_SelectionChanged);
             // 
             // groupBox4
@@ -264,6 +269,7 @@ namespace QuanLyThuVien
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(250, 35);
             this.dateTimePicker1.TabIndex = 23;
+            this.dateTimePicker1.Validating += new System.ComponentModel.CancelEventHandler(this.dateTimePicker1_Validating);
             // 
             // rdoCu
             // 
@@ -536,6 +542,23 @@ namespace QuanLyThuVien
             this.errorProvider1.BlinkRate = 350;
             this.errorProvider1.ContainerControl = this;
             // 
+            // btnReport
+            // 
+            this.btnReport.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnReport.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.errorProvider1.SetIconAlignment(this.btnReport, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
+            this.btnReport.ImageKey = "in.jpg";
+            this.btnReport.ImageList = this.imageList1;
+            this.btnReport.Location = new System.Drawing.Point(1002, 557);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(145, 73);
+            this.btnReport.TabIndex = 20;
+            this.btnReport.Text = " Xuất";
+            this.btnReport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReport.UseVisualStyleBackColor = false;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
+            // 
             // errorProvider2
             // 
             this.errorProvider2.BlinkRate = 350;
@@ -551,12 +574,17 @@ namespace QuanLyThuVien
             this.errorProvider4.BlinkRate = 350;
             this.errorProvider4.ContainerControl = this;
             // 
+            // errorProvider5
+            // 
+            this.errorProvider5.ContainerControl = this;
+            // 
             // FormQLSach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1358, 991);
+            this.Controls.Add(this.btnReport);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnDelete);
@@ -584,6 +612,7 @@ namespace QuanLyThuVien
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -633,5 +662,7 @@ namespace QuanLyThuVien
         private System.Windows.Forms.ErrorProvider errorProvider4;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ImageList imageList2;
+        private System.Windows.Forms.ErrorProvider errorProvider5;
+        private System.Windows.Forms.Button btnReport;
     }
 }

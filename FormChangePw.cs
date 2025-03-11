@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace QuanLyThuVien
 {
@@ -37,14 +38,12 @@ namespace QuanLyThuVien
             string matKhauMoi = txtMatKhauMoi.Text;
             string xacNhanMatKhau = txtXacNhanMatKhau.Text;
 
-            // Kiểm tra các trường không được để trống
             if (string.IsNullOrEmpty(matKhauCu) || string.IsNullOrEmpty(matKhauMoi) || string.IsNullOrEmpty(xacNhanMatKhau))
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Kiểm tra mật khẩu mới và xác nhận mật khẩu phải giống nhau
             if (matKhauMoi != xacNhanMatKhau)
             {
                 MessageBox.Show("Mật khẩu mới và xác nhận mật khẩu không khớp!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -58,7 +57,21 @@ namespace QuanLyThuVien
                 return;
             }
 
-            // Cập nhật mật khẩu mới vào cơ sở dữ liệu
+            // Kiểm tra mật khẩu mới có hợp lệ không
+            if (!KiemTraMatKhauHopLe(matKhauMoi))
+            {
+                MessageBox.Show("Mật khẩu phải có từ 6-8 ký tự, ít nhất một chữ hoa, một chữ số và một ký tự đặc biệt!",
+                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Kiểm tra mật khẩu mới không được trùng mật khẩu cũ
+            if (matKhauMoi == matKhauCu)
+            {
+                MessageBox.Show("Mật khẩu mới không được trùng mật khẩu cũ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (DoiMatKhau(taiKhoan, matKhauMoi))
             {
                 MessageBox.Show("Đổi mật khẩu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -83,6 +96,12 @@ namespace QuanLyThuVien
                     return count > 0; // Trả về true nếu mật khẩu cũ đúng
                 }
             }
+        }
+
+        private bool KiemTraMatKhauHopLe(string password)
+        {
+            string pattern = @"^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,8}$";
+            return Regex.IsMatch(password, pattern);
         }
 
         private bool DoiMatKhau(string taiKhoan, string matKhauMoi)

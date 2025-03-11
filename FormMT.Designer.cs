@@ -109,6 +109,8 @@ namespace QuanLyThuVien
             this.rdoMaPhieuTra = new System.Windows.Forms.RadioButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox13.SuspendLayout();
@@ -128,6 +130,8 @@ namespace QuanLyThuVien
             this.groupBox12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -373,6 +377,7 @@ namespace QuanLyThuVien
             this.imageList1.Images.SetKeyName(2, "Lưu.png");
             this.imageList1.Images.SetKeyName(3, "Thêm.png");
             this.imageList1.Images.SetKeyName(4, "Sửa.jpg");
+            this.imageList1.Images.SetKeyName(5, "gia hạn.png");
             // 
             // btnLuu
             // 
@@ -393,7 +398,7 @@ namespace QuanLyThuVien
             // 
             this.btnGiaHan.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnGiaHan.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnGiaHan.ImageKey = "Sửa.jpg";
+            this.btnGiaHan.ImageKey = "gia hạn.png";
             this.btnGiaHan.ImageList = this.imageList1;
             this.btnGiaHan.Location = new System.Drawing.Point(1277, 521);
             this.btnGiaHan.Name = "btnGiaHan";
@@ -539,7 +544,7 @@ namespace QuanLyThuVien
             this.dtpNgayHenTra.Name = "dtpNgayHenTra";
             this.dtpNgayHenTra.Size = new System.Drawing.Size(268, 35);
             this.dtpNgayHenTra.TabIndex = 26;
-            this.dtpNgayHenTra.ValueChanged += new System.EventHandler(this.dtpNgayHenTra_ValueChanged);
+            this.dtpNgayHenTra.Validating += new System.ComponentModel.CancelEventHandler(this.dtpNgayHenTra_Validating);
             // 
             // dtpNgayMuon
             // 
@@ -549,6 +554,7 @@ namespace QuanLyThuVien
             this.dtpNgayMuon.Name = "dtpNgayMuon";
             this.dtpNgayMuon.Size = new System.Drawing.Size(268, 35);
             this.dtpNgayMuon.TabIndex = 25;
+            this.dtpNgayMuon.Validating += new System.ComponentModel.CancelEventHandler(this.dtpNgayMuon_Validating);
             // 
             // dtpHanThe
             // 
@@ -983,6 +989,14 @@ namespace QuanLyThuVien
             this.errorProvider2.BlinkRate = 350;
             this.errorProvider2.ContainerControl = this;
             // 
+            // errorProvider3
+            // 
+            this.errorProvider3.ContainerControl = this;
+            // 
+            // errorProvider4
+            // 
+            this.errorProvider4.ContainerControl = this;
+            // 
             // Form7
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1021,6 +1035,8 @@ namespace QuanLyThuVien
             this.groupBox12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1105,5 +1121,7 @@ namespace QuanLyThuVien
         private System.Windows.Forms.ErrorProvider errorProvider2;
         private System.Windows.Forms.ImageList imageList3;
         private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.ErrorProvider errorProvider3;
+        private System.Windows.Forms.ErrorProvider errorProvider4;
     }
 }

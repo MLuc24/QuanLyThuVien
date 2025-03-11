@@ -11,11 +11,13 @@ namespace QuanLyThuVien
     {
         private string kn = ConfigurationManager.ConnectionStrings["qltv"].ConnectionString;
         private string maPhieu;
+        private string tenNhanVien;
 
-        public FormCTmuontra(string maPhieu)
+        public FormCTmuontra(string maPhieu, string tenNV)
         {
             InitializeComponent();
             this.maPhieu = maPhieu;
+            this.tenNhanVien = tenNV;
             LoadChiTietPhieu();
             LoadThongTinPhieuMuon();
             DisableAllControls();
@@ -40,7 +42,7 @@ namespace QuanLyThuVien
                 adapter.Fill(dt);
 
                 dgvPhieuCT.DataSource = dt;
-                dgvPhieuCT.Columns["Ngày hẹn trả"].DefaultCellStyle.Format = "dd/MM/yyyy";              
+                dgvPhieuCT.Columns["Ngày hẹn trả"].DefaultCellStyle.Format = "dd/MM/yyyy";
             }
         }
 
@@ -124,33 +126,40 @@ namespace QuanLyThuVien
             // Khi chọn sách, chỉ bật các ô liên quan đến trả sách
             txtGhiChu.Enabled = true;
             cboTinhTrangTra.Enabled = true;
-            dtpNgayTra.Enabled = true;
         }
 
         private void btnReset_Click(object sender, EventArgs e)
-        { 
-                // Vô hiệu hóa tất cả các ô nhập
-                txtMaPhieu.Enabled = false;
-                txtTenDocGia.Enabled = false;
-                dtpNgayMuon.Enabled = false;
-                dtpNgayHenTra.Enabled = false;
-                txtTenSach.Enabled = false;
-                txtSoLuong.Enabled = false;
-                txtGhiChu.Enabled = false;
-                cboTinhTrangTra.Enabled = false;
-                dtpNgayTra.Enabled = false;
+        {
+            DisableAllControls();
 
-                // Xóa dữ liệu nhập
-                txtTenSach.Clear();
-                txtSoLuong.Clear();
-                txtGhiChu.Clear();
-                cboTinhTrangTra.SelectedIndex = -1;
+            // Xóa dữ liệu nhập
+            txtTenSach.Clear();
+            txtSoLuong.Clear();
+            txtGhiChu.Clear();
+            cboTinhTrangTra.SelectedIndex = -1;
 
-                // Giữ nguyên ngày trả là ngày hiện tại
-                dtpNgayTra.Value = DateTime.Now;
+            // Giữ nguyên ngày trả là ngày hiện tại
+            dtpNgayTra.Value = DateTime.Now;
 
-                // Bỏ chọn hàng trong dgv
-                dgvPhieuCT.ClearSelection();
+            // Bỏ chọn hàng trong dgv
+            dgvPhieuCT.ClearSelection();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DisableAllControls();
+
+            // Xóa dữ liệu nhập
+            txtTenSach.Clear();
+            txtSoLuong.Clear();
+            txtGhiChu.Clear();
+            cboTinhTrangTra.SelectedIndex = -1;
+
+            // Giữ nguyên ngày trả là ngày hiện tại
+            dtpNgayTra.Value = DateTime.Now;
+
+            // Bỏ chọn hàng trong dgv
+            dgvPhieuCT.ClearSelection();
         }
 
         private void PerformSearchTra()
@@ -228,7 +237,7 @@ namespace QuanLyThuVien
         private void FormCTmuontra_KeyDown(object sender, KeyEventArgs e)
         {
             //Kiểm tra nếu phím được nhấn là Esc
-                if (e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
                 // Hiển thị hộp thoại xác nhận
                 DialogResult result = MessageBox.Show(
@@ -247,6 +256,61 @@ namespace QuanLyThuVien
         }
 
         private void btnXem_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(kn))
+            {
+                string sql = @"
+                SELECT 
+                    ct.sMaphieu , 
+                    dg.sTendocgia , 
+                    s.sTensach , 
+                    tl.sTentheloai,
+                    s.sNhaxuatban,
+                    ct.iSlmuon, 
+                    ct.dNgayhentra      
+                FROM tblCTmuontra ct 
+                JOIN tblPhieumuon pm ON pm.sMaphieu = ct.sMaphieu
+                JOIN tblDocGia dg ON pm.sMadocgia = dg.sMadocgia
+                JOIN tblSach s ON ct.sMasach = s.sMasach
+                JOIN tblTheloai tl On s.sMatheloai = tl.sMatheloai 
+                WHERE ct.sTinhtrangtra IS NULL AND ct.sMaphieu = @MaPhieu";
+
+                using (SqlCommand cmd = new SqlCommand(sql, connection))
+                {
+                    // Thêm tham số @MaPhieu và gán giá trị
+                    cmd.Parameters.Add("@MaPhieu", SqlDbType.VarChar).Value = maPhieu;
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataSet1 ds = new DataSet1();
+                    da.Fill(ds, "Danhsach");
+
+                    if (ds.Tables["Danhsach"].Rows.Count == 0)
+                    {
+                        MessageBox.Show("Không có dữ liệu trễ hạn để in báo cáo!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    // Tạo báo cáo Crystal Report
+                    CrystalReport2 rpt = new CrystalReport2();
+                    rpt.SetDataSource(ds.Tables["Danhsach"]);
+
+                    // Truyền giá trị "Tên nhân viên" vào báo cáo
+                    rpt.SetParameterValue("TenNhanVien", this.tenNhanVien);
+
+                    // Hiển thị báo cáo
+                    FormInBaoCao f = new FormInBaoCao();
+                    f.crystalReportViewer1.ReportSource = rpt;
+                    f.ShowDialog();
+                }
+            }
+        }
+
+        private void FormCTmuontra_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
             if (dgvPhieuCT.SelectedRows.Count == 0)
             {
@@ -294,14 +358,7 @@ namespace QuanLyThuVien
                     }
                 }
             }
-
-        }
-
-        private void FormCTmuontra_Load(object sender, EventArgs e)
-        {
-
         }
     }
-
 }
     

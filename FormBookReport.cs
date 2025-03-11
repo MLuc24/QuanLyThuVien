@@ -154,11 +154,6 @@ namespace QuanLyThuVien
             }
         }
 
-        private void btnTra_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void LoadDataTreHan()
         {
             using (SqlConnection connection = new SqlConnection(kn))
@@ -186,14 +181,46 @@ namespace QuanLyThuVien
             }
         }
 
-        private void tabPage2_Click(object sender, EventArgs e)
+        private void btnPrint_Click(object sender, EventArgs e)
         {
+            if (dgvTKS_TL.SelectedRows.Count > 0)
+            {
+                string maTheLoai = dgvTKS_TL.SelectedRows[0].Cells["Mã thể loại"].Value.ToString();
+                int? thang = cboThang.SelectedItem as int?;
+                int? nam = cboNam.SelectedItem as int?;
 
-        }
+                using (SqlConnection connection = new SqlConnection(kn))
+                {
+                    string sql = "sp_ThongKeSachMuon"; // Gọi stored procedure
+                    SqlCommand cmd = new SqlCommand(sql, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
+                    // Thêm tham số vào stored procedure
+                    cmd.Parameters.AddWithValue("@Thang", thang ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Nam", nam ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@MaTheLoai", maTheLoai ?? (object)DBNull.Value);
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataSet1 ds = new DataSet1();
+                    da.Fill(ds, "Danhsach");
+
+                    CrystalReport4 rpt = new CrystalReport4();
+                    //rpt.Load(reportPath);
+                    rpt.SetDataSource(ds.Tables[1]);
+
+                    // Truyền tham số "Tên nhân viên" vào báo cáo (nếu cần)
+                    rpt.SetParameterValue("TenNhanVien", this.tenNhanVien);
+
+                    // Hiển thị báo cáo trên FormInBaoCao
+                    FormInBaoCao f = new FormInBaoCao();
+                    f.crystalReportViewer1.ReportSource = rpt;
+                    f.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một thể loại trước khi xuất báo cáo!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

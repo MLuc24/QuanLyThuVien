@@ -41,3 +41,4 @@ E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\stdole.dll
 E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
 E:\Lthsk\Winform\QuanLyThuVien\obj\Debug\QuanLyThuVien.FormInBaoCao.resources
 E:\Lthsk\Winform\QuanLyThuVien\obj\Debug\QuanLyThuVien.csproj.CopyComplete
+E:\Lthsk\Winform\QuanLyThuVien\obj\Debug\QuanLyThuVien.FormBaoCao.resources

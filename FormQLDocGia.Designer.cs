@@ -79,6 +79,8 @@ namespace QuanLyThuVien
             this.button1 = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnGiaHan = new System.Windows.Forms.Button();
+            this.errorProvider6 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnReport = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dsDocgia)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -90,6 +92,7 @@ namespace QuanLyThuVien
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider6)).BeginInit();
             this.SuspendLayout();
             // 
             // btnHome
@@ -180,6 +183,7 @@ namespace QuanLyThuVien
             this.dNgaylapthe.Name = "dNgaylapthe";
             this.dNgaylapthe.Size = new System.Drawing.Size(267, 35);
             this.dNgaylapthe.TabIndex = 25;
+            this.dNgaylapthe.Validating += new System.ComponentModel.CancelEventHandler(this.dNgaylapthe_Validating);
             // 
             // label11
             // 
@@ -281,7 +285,6 @@ namespace QuanLyThuVien
             this.txtMadocgia.Name = "txtMadocgia";
             this.txtMadocgia.Size = new System.Drawing.Size(345, 31);
             this.txtMadocgia.TabIndex = 10;
-            this.txtMadocgia.Validating += new System.ComponentModel.CancelEventHandler(this.txtMadocgia_Validating);
             // 
             // label10
             // 
@@ -484,7 +487,7 @@ namespace QuanLyThuVien
             this.btnAdd.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnAdd.ImageKey = "Thêm.png";
             this.btnAdd.ImageList = this.imageList2;
-            this.btnAdd.Location = new System.Drawing.Point(152, 603);
+            this.btnAdd.Location = new System.Drawing.Point(45, 603);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(164, 73);
             this.btnAdd.TabIndex = 25;
@@ -502,6 +505,8 @@ namespace QuanLyThuVien
             this.imageList2.Images.SetKeyName(2, "Sửa.jpg");
             this.imageList2.Images.SetKeyName(3, "Thêm.png");
             this.imageList2.Images.SetKeyName(4, "Xóa.png");
+            this.imageList2.Images.SetKeyName(5, "in.jpg");
+            this.imageList2.Images.SetKeyName(6, "gia hạn.png");
             // 
             // btnEdit
             // 
@@ -509,7 +514,7 @@ namespace QuanLyThuVien
             this.btnEdit.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnEdit.ImageKey = "Sửa.jpg";
             this.btnEdit.ImageList = this.imageList2;
-            this.btnEdit.Location = new System.Drawing.Point(330, 603);
+            this.btnEdit.Location = new System.Drawing.Point(229, 603);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(164, 73);
             this.btnEdit.TabIndex = 26;
@@ -524,7 +529,7 @@ namespace QuanLyThuVien
             this.btnDelete.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnDelete.ImageKey = "Xóa.png";
             this.btnDelete.ImageList = this.imageList2;
-            this.btnDelete.Location = new System.Drawing.Point(508, 603);
+            this.btnDelete.Location = new System.Drawing.Point(413, 603);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(164, 73);
             this.btnDelete.TabIndex = 27;
@@ -539,7 +544,7 @@ namespace QuanLyThuVien
             this.btnSave.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnSave.ImageKey = "Lưu.png";
             this.btnSave.ImageList = this.imageList2;
-            this.btnSave.Location = new System.Drawing.Point(864, 603);
+            this.btnSave.Location = new System.Drawing.Point(781, 603);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(164, 73);
             this.btnSave.TabIndex = 28;
@@ -554,7 +559,7 @@ namespace QuanLyThuVien
             this.btnCancel.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnCancel.ImageKey = "Hủy.jpg";
             this.btnCancel.ImageList = this.imageList2;
-            this.btnCancel.Location = new System.Drawing.Point(1042, 603);
+            this.btnCancel.Location = new System.Drawing.Point(965, 603);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(164, 73);
             this.btnCancel.TabIndex = 29;
@@ -585,9 +590,9 @@ namespace QuanLyThuVien
             // 
             this.btnGiaHan.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnGiaHan.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnGiaHan.ImageKey = "Xóa.png";
+            this.btnGiaHan.ImageKey = "gia hạn.png";
             this.btnGiaHan.ImageList = this.imageList2;
-            this.btnGiaHan.Location = new System.Drawing.Point(686, 603);
+            this.btnGiaHan.Location = new System.Drawing.Point(597, 603);
             this.btnGiaHan.Name = "btnGiaHan";
             this.btnGiaHan.Size = new System.Drawing.Size(164, 73);
             this.btnGiaHan.TabIndex = 31;
@@ -596,12 +601,31 @@ namespace QuanLyThuVien
             this.btnGiaHan.UseVisualStyleBackColor = false;
             this.btnGiaHan.Click += new System.EventHandler(this.btnGiaHan_Click);
             // 
+            // errorProvider6
+            // 
+            this.errorProvider6.ContainerControl = this;
+            // 
+            // btnReport
+            // 
+            this.btnReport.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnReport.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnReport.ImageKey = "in.jpg";
+            this.btnReport.ImageList = this.imageList2;
+            this.btnReport.Location = new System.Drawing.Point(1149, 603);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(164, 73);
+            this.btnReport.TabIndex = 32;
+            this.btnReport.Text = "   Xuất";
+            this.btnReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReport.UseVisualStyleBackColor = false;
+            // 
             // FormQLDocGia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1358, 1036);
+            this.Controls.Add(this.btnReport);
             this.Controls.Add(this.btnGiaHan);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnCancel);
@@ -632,6 +656,7 @@ namespace QuanLyThuVien
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider6)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -685,5 +710,7 @@ namespace QuanLyThuVien
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ImageList imageList2;
         private System.Windows.Forms.Button btnGiaHan;
+        private System.Windows.Forms.ErrorProvider errorProvider6;
+        private System.Windows.Forms.Button btnReport;
     }
 }

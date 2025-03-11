@@ -10,14 +10,16 @@ namespace QuanLyThuVien
     public partial class FormReceipt : Form
     {
         private string kn;
+        private string tenNhanVien;
 
-        public FormReceipt()
+        public FormReceipt(string tenNV)
         {
             InitializeComponent();
             kn = ConfigurationManager.ConnectionStrings["qltv"].ConnectionString;
             LoadDataDocGia();
             LoadDataPhieuThu();
             SetControlState(false);
+            this.tenNhanVien = tenNV;
         }
 
         private void SetControlState(bool isEnabled)
@@ -32,7 +34,7 @@ namespace QuanLyThuVien
             btnAdd.Enabled = !isEnabled;
             btnSave.Enabled = isEnabled;
             btnCancel.Enabled = isEnabled;
-            btnEdit.Enabled = !isEnabled;
+            btnPrint.Enabled = false;
             btnDelete.Enabled = false;
             btnHome.Enabled = true;
         }
@@ -84,32 +86,16 @@ namespace QuanLyThuVien
 
         private string GenerateNewReceiptID()
         {
-            string newID = "MPT001"; // Giá trị mặc định nếu chưa có phiếu nào
-            using (SqlConnection connection = new SqlConnection(kn))
-            {
-                string query = "SELECT TOP 1 sMaphieuthu FROM tblPhieuThu ORDER BY sMaphieuthu DESC";
-                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-
-                if (dt.Rows.Count > 0)
-                {
-                    string lastID = dt.Rows[0]["sMaphieuthu"].ToString();
-                    int number = int.Parse(lastID.Substring(3)) + 1;
-                    newID = "MPT" + number.ToString("D3");
-                }
-            }
-            return newID;
+            return Library.GenerateNewID("tblPhieuthu", "sMaphieuthu", "MPT", 4);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             SetControlState(true);  // Bật nhập liệu
-            ClearFields();  // Xóa dữ liệu cũ
-
-            // Tạo mã phiếu thu tự động (MPT001, MPT002, ...)
+            ClearFields();  // Xóa dữ liệu cũ)
             txtMaPhieuThu.Text = GenerateNewReceiptID();
             dtpNgayThu.Value = DateTime.Now; // Mặc định ngày hiện tại
+            dtpNgayThu.Enabled = false;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -117,8 +103,8 @@ namespace QuanLyThuVien
             using (SqlConnection connection = new SqlConnection(kn))
             {
                 connection.Open();
-                string query = @"INSERT INTO tblPhieuThu (sMaphieuthu, sMadocgia, fSotienthu, fConlai, dNgaythu, isDeleted, fTongno) 
-                                VALUES (@MaPhieu, @MaDocGia, @SoTienThu, @ConLai, @NgayThu, 0, @TongNo)";
+                string query = @"INSERT INTO tblPhieuThu (sMaphieuthu, sMadocgia, fSotienthu, fConlai, dNgaythu, isDeleted) 
+                                VALUES (@MaPhieu, @MaDocGia, @SoTienThu, @ConLai, @NgayThu, 0)";
 
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
@@ -132,7 +118,7 @@ namespace QuanLyThuVien
                 }
             }
 
-            MessageBox.Show("✔ Tạo phiếu thành công!", "Thành công",
+            MessageBox.Show(" Tạo phiếu thành công!", "Thành công",
              MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             LoadDataPhieuThu();
@@ -153,6 +139,7 @@ namespace QuanLyThuVien
         private void btnCancel_Click(object sender, EventArgs e)
         {
             SetControlState(false);
+            ClearFields();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -196,8 +183,12 @@ namespace QuanLyThuVien
                 txtTongNo.Text = "";
                 txtConLai.Text = "";
 
+                txtSoTienThu.Enabled = false;
+                cboDocGia.Enabled = false;
+                dtpNgayThu.Enabled = false;
                 btnDelete.Enabled = true; // Kích hoạt nút Xóa khi chọn hàng
                 btnAdd.Enabled = true;
+                btnPrint.Enabled = true;
                 btnSave.Enabled = false;
                 btnCancel.Enabled = false;
             }
@@ -300,11 +291,72 @@ namespace QuanLyThuVien
                 return;
             }
 
+            if (soTienThu < 50000)
+            {
+                errorProvider1.SetError(txtSoTienThu, "Số tiền thu phải ít nhất là 50,000!");
+                e.Cancel = true;
+                return;
+            }
+
             if (decimal.TryParse(txtTongNo.Text, out decimal tongNo) && soTienThu > tongNo)
             {
                 errorProvider1.SetError(txtSoTienThu, "Số tiền thu không được lớn hơn tổng nợ!");
                 e.Cancel = true;
             }
+
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+
+            using (SqlConnection connection = new SqlConnection(kn))
+            {
+                string sql = @"
+                    SELECT 
+                pt.sMaphieuthu AS [Mã phiếu thu], 
+                dg.sTendocgia AS [Tên độc giả],
+                ISNULL(pt.fConlai, 0) + ISNULL(pt.fSotienthu, 0) AS [Tổng nợ], 
+                pt.fSotienthu AS [Số tiền thu], 
+                pt.fConlai AS [Còn lại], 
+                pt.dNgaythu AS [Ngày thu] 
+                FROM tblPhieuThu pt
+                JOIN tblDocGia dg ON pt.sMadocgia = dg.sMadocgia
+                WHERE pt.sMaphieuthu = @MaPhieuThu";
+
+                using (SqlCommand cmd = new SqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("@MaPhieuThu", txtMaPhieuThu.Text);
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "PhieuThu");
+
+                    if (!ds.Tables["PhieuThu"].Columns.Contains("Tổng nợ"))
+                    {
+                        MessageBox.Show("Cột 'Tổng nợ' không có trong dữ liệu!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    // Load báo cáo Crystal Report
+                    string reportPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Report", "CrystalReport3.rpt");
+                    CrystalReport3 rpt = new CrystalReport3();
+                    rpt.Load(reportPath);
+                    rpt.SetDataSource(ds.Tables["PhieuThu"]);
+
+                    // Truyền giá trị "Tên nhân viên" vào báo cáo
+                    rpt.SetParameterValue("TenNhanVien", this.tenNhanVien);
+
+                    // Hiển thị báo cáo
+                    FormInBaoCao f = new FormInBaoCao();
+                    f.crystalReportViewer1.ReportSource = rpt;
+                    f.ShowDialog();
+                }
+            }
+
+        }
+
+        private void txtMaPhieuThu_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

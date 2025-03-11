@@ -36,21 +36,6 @@ namespace QuanLyThuVien
             Library.LoadComboBox(cboLoaidocgia, "tblLoaidocgia", "sMaloaidocgia", "sTenloaidocgia");
         }
 
-        private bool IsMaDGExists(string madg)
-        {
-            using (SqlConnection cnn = new SqlConnection(kn))
-            {
-                cnn.Open();
-                using (SqlCommand cmd = cnn.CreateCommand())
-                {
-                    cmd.CommandText = "Select Count(*) from tblDocgia Where sMadocgia = @madocgia";
-                    cmd.Parameters.AddWithValue("@madocgia", madg);
-                    int count = (int)cmd.ExecuteScalar();
-                    return count > 0;
-                }
-            }
-        }
-
         private void InitializeControls()
         {
             DisableTextBoxes();
@@ -119,6 +104,16 @@ namespace QuanLyThuVien
             cboLoaidocgia.SelectedIndex = -1;
         }
 
+        public void ClearError()
+        {
+            errorProvider1.SetError(txtMadocgia, "");
+            errorProvider2.SetError(txtTendocgia, "");
+            errorProvider3.SetError(txtEmail, "");
+            errorProvider4.SetError(txtSdt, "");
+            errorProvider5.SetError(dNgayhethan, "");
+            errorProvider6.SetError(dNgaylapthe, "");
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             isAdding = true;
@@ -131,6 +126,8 @@ namespace QuanLyThuVien
             cboLoaidocgia.SelectedIndex = 0;
             rdoNam.Checked = true;
             dNgaylapthe.Value = DateTime.Now;
+            dNgayhethan.Enabled = true;
+            dNgaylapthe.Enabled = false;
             dNgayhethan.Value = dNgaylapthe.Value.AddMonths(3);
 
             btnAdd.Enabled = false;
@@ -204,21 +201,16 @@ namespace QuanLyThuVien
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            errorProvider1.SetError(txtMadocgia, "");
-            errorProvider2.SetError(txtTendocgia, "");
-            errorProvider3.SetError(txtEmail, "");
-            errorProvider4.SetError(txtSdt, "");
-            errorProvider5.SetError(dNgayhethan, "");
 
+            ClearError();
             InitializeControls();
             isAdding = false;
-            ClearTextBoxes(); // Xóa mã độc giả khi hủy
+            ClearTextBoxes(); 
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             // Gọi các phương thức Validating một cách thủ công
-            txtMadocgia_Validating(txtMadocgia, new CancelEventArgs());
             txtTendocgia_Validating(txtTendocgia, new CancelEventArgs());
             txtEmail_Validating(txtEmail, new CancelEventArgs());
             txtSdt_Validating(txtSdt, new CancelEventArgs());
@@ -226,7 +218,6 @@ namespace QuanLyThuVien
 
             // Kiểm tra xem có lỗi nào không
             bool hasErrors =
-                !string.IsNullOrEmpty(errorProvider1.GetError(txtMadocgia)) ||
                 !string.IsNullOrEmpty(errorProvider2.GetError(txtTendocgia)) ||
                 !string.IsNullOrEmpty(errorProvider3.GetError(txtEmail)) ||
                 !string.IsNullOrEmpty(errorProvider4.GetError(txtSdt)) ||
@@ -274,18 +265,6 @@ namespace QuanLyThuVien
             Loadata();
         }
 
-        private void txtMadocgia_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtMadocgia.Text))
-                errorProvider1.SetError(txtMadocgia, "Mã độc giả không được để trống!");
-            else
-            {
-                if (isAdding && IsMaDGExists(txtMadocgia.Text))
-                    errorProvider1.SetError(txtMadocgia, "Độc giả này đã tồn tại!");
-                else errorProvider1.SetError(txtMadocgia, "");
-            }
-        }
-
         private void dsDocgia_SelectionChanged(object sender, EventArgs e)
         {
             if (dsDocgia.SelectedRows.Count > 0)
@@ -299,7 +278,7 @@ namespace QuanLyThuVien
                 rdoNu.Checked = selecterRow.Cells["Giới tính"].Value.ToString() == "Nữ";
                 dNgaysinh.Value = Convert.ToDateTime(selecterRow.Cells["Ngày sinh"].Value);
                 txtSdt.Text = selecterRow.Cells["Số điện thoại"].Value.ToString();
-                cboLoaidocgia.SelectedValue = selecterRow.Cells["Mã loại độc giả"].Value.ToString();
+                cboLoaidocgia.Text = selecterRow.Cells["Loại độc giả"].Value.ToString();
                 dNgaylapthe.Value = Convert.ToDateTime(selecterRow.Cells["Ngày lập thẻ"].Value);
                 dNgayhethan.Value = Convert.ToDateTime(selecterRow.Cells["Ngày hết hạn"].Value);
 
@@ -310,11 +289,7 @@ namespace QuanLyThuVien
                 btnEdit.Enabled = true;
                 btnSave.Enabled = false;
                 btnCancel.Enabled = false;
-                errorProvider1.Clear();
-                errorProvider2.Clear();
-                errorProvider3.Clear();
-                errorProvider4.Clear();
-                errorProvider5.Clear();
+                ClearError();
             }
         }
 
@@ -358,13 +333,19 @@ namespace QuanLyThuVien
 
         private void dNgayhethan_Validating(object sender, CancelEventArgs e)
         {
+            DateTime ngayHienTai = DateTime.Now.Date; 
+
             if (dNgayhethan.Value < dNgaylapthe.Value.AddMonths(3))
             {
                 errorProvider5.SetError(dNgayhethan, "Ngày hết hạn phải lớn hơn ngày lập thẻ ít nhất 3 tháng!");
             }
+            else if (dNgayhethan.Value <= ngayHienTai)
+            {
+                errorProvider5.SetError(dNgayhethan, "Ngày hết hạn phải lớn hơn ngày hiện tại!");
+            }
             else
             {
-                errorProvider5.SetError(dNgayhethan, ""); // Xóa lỗi nếu hợp lệ
+                errorProvider5.SetError(dNgayhethan, "");
             }
         }
 
@@ -419,12 +400,7 @@ namespace QuanLyThuVien
             // Khôi phục trạng thái ban đầu của các control
             InitializeControls();
 
-            // Xóa các thông báo lỗi (nếu có)
-            errorProvider1.Clear();
-            errorProvider2.Clear();
-            errorProvider3.Clear();
-            errorProvider4.Clear();
-            errorProvider5.Clear();
+            ClearError();
             txtTimkiem.Text = string.Empty;
             // Xóa các giá trị trong các textbox và datetimepicker
             ClearTextBoxes();
@@ -449,6 +425,8 @@ namespace QuanLyThuVien
         {
             if (dsDocgia.SelectedRows.Count > 0)
             {
+               
+
                 // Cho phép chỉnh sửa ngày hết hạn
                 dNgayhethan.Enabled = true;
 
@@ -459,9 +437,6 @@ namespace QuanLyThuVien
                 btnSave.Enabled = true;
                 btnCancel.Enabled = true;
                 btnGiaHan.Enabled = false;
-
-
-                MessageBox.Show("Bạn có thể chỉnh sửa ngày hết hạn. Nhấn 'Lưu' để ghi lại thay đổi!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -492,6 +467,21 @@ namespace QuanLyThuVien
                 {
                     this.Close();
                 }
+            }
+        }
+
+        private void dNgaylapthe_Validating(object sender, CancelEventArgs e)
+        {
+
+            DateTime today = DateTime.Now.Date;
+
+            if (dNgaylapthe.Value.Date > today)
+            {
+                errorProvider6.SetError(dNgaylapthe, "Ngày lập thẻ không hợp lệ!.");
+            }
+            else
+            {
+                errorProvider6.SetError(dNgaylapthe, ""); // Xóa lỗi nếu hợp lệ
             }
         }
     }

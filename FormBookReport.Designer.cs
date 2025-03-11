@@ -34,16 +34,16 @@ namespace QuanLyThuVien
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvSachtrehan = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.btnReset = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvCT = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnTra = new System.Windows.Forms.Button();
             this.cboThang = new System.Windows.Forms.ComboBox();
             this.cboNam = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -53,6 +53,7 @@ namespace QuanLyThuVien
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.btnReport = new System.Windows.Forms.Button();
             this.tabPage2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSachtrehan)).BeginInit();
@@ -67,8 +68,8 @@ namespace QuanLyThuVien
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.tabPage2.Controls.Add(this.btnReport);
             this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.Controls.Add(this.groupBox4);
             this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Location = new System.Drawing.Point(8, 47);
@@ -77,7 +78,6 @@ namespace QuanLyThuVien
             this.tabPage2.Size = new System.Drawing.Size(1255, 1105);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Sách trễ hạn";
-            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // button2
             // 
@@ -95,20 +95,6 @@ namespace QuanLyThuVien
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "Logo.png");
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button1.ImageKey = "Sửa.jpg";
-            this.button1.Location = new System.Drawing.Point(545, 802);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(164, 91);
-            this.button1.TabIndex = 55;
-            this.button1.Text = "Xuất báo cáo";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox4
             // 
@@ -150,9 +136,9 @@ namespace QuanLyThuVien
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.tabPage1.Controls.Add(this.btnPrint);
             this.tabPage1.Controls.Add(this.btnReset);
             this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.btnTra);
             this.tabPage1.Controls.Add(this.cboThang);
             this.tabPage1.Controls.Add(this.cboNam);
             this.tabPage1.Controls.Add(this.label2);
@@ -165,6 +151,34 @@ namespace QuanLyThuVien
             this.tabPage1.Size = new System.Drawing.Size(1255, 1105);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Sách - Thể loại";
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnPrint.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnPrint.ImageIndex = 5;
+            this.btnPrint.ImageList = this.imageList2;
+            this.btnPrint.Location = new System.Drawing.Point(554, 995);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(145, 73);
+            this.btnPrint.TabIndex = 60;
+            this.btnPrint.Text = "  Xuất";
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // imageList2
+            // 
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList2.Images.SetKeyName(0, "Hủy.jpg");
+            this.imageList2.Images.SetKeyName(1, "Lưu.png");
+            this.imageList2.Images.SetKeyName(2, "Sửa.jpg");
+            this.imageList2.Images.SetKeyName(3, "Thêm.png");
+            this.imageList2.Images.SetKeyName(4, "Xóa.png");
+            this.imageList2.Images.SetKeyName(5, "in.jpg");
+            this.imageList2.Images.SetKeyName(6, "gia hạn.png");
             // 
             // btnReset
             // 
@@ -211,20 +225,6 @@ namespace QuanLyThuVien
             this.groupBox3.Size = new System.Drawing.Size(798, 300);
             this.groupBox3.TabIndex = 39;
             this.groupBox3.TabStop = false;
-            // 
-            // btnTra
-            // 
-            this.btnTra.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnTra.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnTra.ImageKey = "Sửa.jpg";
-            this.btnTra.Location = new System.Drawing.Point(548, 996);
-            this.btnTra.Name = "btnTra";
-            this.btnTra.Size = new System.Drawing.Size(164, 91);
-            this.btnTra.TabIndex = 54;
-            this.btnTra.Text = "Xuất báo cáo";
-            this.btnTra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnTra.UseVisualStyleBackColor = false;
-            this.btnTra.Click += new System.EventHandler(this.btnTra_Click);
             // 
             // cboThang
             // 
@@ -330,6 +330,21 @@ namespace QuanLyThuVien
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
             // 
+            // btnReport
+            // 
+            this.btnReport.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnReport.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnReport.ImageIndex = 5;
+            this.btnReport.ImageList = this.imageList2;
+            this.btnReport.Location = new System.Drawing.Point(525, 801);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(145, 73);
+            this.btnReport.TabIndex = 61;
+            this.btnReport.Text = "  Xuất";
+            this.btnReport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReport.UseVisualStyleBackColor = false;
+            // 
             // FormBookReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -357,7 +372,6 @@ namespace QuanLyThuVien
         #endregion
 
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DataGridView dgvSachtrehan;
         private System.Windows.Forms.Label label3;
@@ -365,7 +379,6 @@ namespace QuanLyThuVien
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dgvCT;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button btnTra;
         private System.Windows.Forms.ComboBox cboThang;
         private System.Windows.Forms.ComboBox cboNam;
         private System.Windows.Forms.Label label2;
@@ -378,5 +391,8 @@ namespace QuanLyThuVien
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ImageList imageList2;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Button btnReport;
     }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace QuanLyThuVien
 {
@@ -93,6 +94,13 @@ namespace QuanLyThuVien
             }
         }
 
+        private bool KiemTraMatKhau(string password)
+        {
+            // Regex kiểm tra mật khẩu
+            string pattern = @"^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,8}$";
+            return Regex.IsMatch(password, pattern);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             string tenTaiKhoan = txtTaiKhoan.Text;
@@ -101,6 +109,14 @@ namespace QuanLyThuVien
             if (tenTaiKhoan == "Nhập tài khoản" || matKhau == "Nhập mật khẩu")
             {
                 MessageBox.Show("Vui lòng nhập tài khoản và mật khẩu!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Kiểm tra độ mạnh của mật khẩu
+            if (!KiemTraMatKhau(matKhau))
+            {
+                MessageBox.Show("Mật khẩu phải có từ 6-8 ký tự, ít nhất một chữ hoa, một chữ số và một ký tự đặc biệt!",
+                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -182,11 +198,6 @@ namespace QuanLyThuVien
             {
                 button1.PerformClick(); // Kích hoạt sự kiện Click của btnDangNhap
             }
-        }
-
-        private void Form4_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

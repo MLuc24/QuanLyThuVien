@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Configuration;
 using System.ComponentModel;
+using CrystalDecisions.CrystalReports.Engine;
 
 namespace QuanLyThuVien
 {
@@ -86,6 +87,5 @@ namespace QuanLyThuVien
                 }
             }
         }
-
     }
 }

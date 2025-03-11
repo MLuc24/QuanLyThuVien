@@ -64,6 +64,8 @@ namespace QuanLyThuVien
             this.rdoTenSach = new System.Windows.Forms.RadioButton();
             this.btnReset = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhieuCT)).BeginInit();
             this.groupBox9.SuspendLayout();
@@ -76,13 +78,13 @@ namespace QuanLyThuVien
             // 
             this.btnXem.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnXem.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnXem.ImageKey = "Xóa.png";
+            this.btnXem.ImageKey = "in.jpg";
             this.btnXem.ImageList = this.imageList2;
-            this.btnXem.Location = new System.Drawing.Point(460, 797);
+            this.btnXem.Location = new System.Drawing.Point(400, 808);
             this.btnXem.Name = "btnXem";
             this.btnXem.Size = new System.Drawing.Size(145, 73);
             this.btnXem.TabIndex = 49;
-            this.btnXem.Text = "   Trả";
+            this.btnXem.Text = "   In";
             this.btnXem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnXem.UseVisualStyleBackColor = false;
             this.btnXem.Click += new System.EventHandler(this.btnXem_Click);
@@ -92,6 +94,10 @@ namespace QuanLyThuVien
             this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
             this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList2.Images.SetKeyName(0, "Xóa.png");
+            this.imageList2.Images.SetKeyName(1, "Lưu.png");
+            this.imageList2.Images.SetKeyName(2, "Hủy.jpg");
+            this.imageList2.Images.SetKeyName(3, "");
+            this.imageList2.Images.SetKeyName(4, "in.jpg");
             // 
             // groupBox8
             // 
@@ -402,7 +408,6 @@ namespace QuanLyThuVien
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(154, 122);
             this.btnReset.TabIndex = 51;
-            this.btnReset.Text = "Danh sách chi tiết";
             this.btnReset.UseVisualStyleBackColor = false;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
@@ -412,12 +417,44 @@ namespace QuanLyThuVien
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "Logo.png");
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button1.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.button1.ImageKey = "Xóa.png";
+            this.button1.ImageList = this.imageList2;
+            this.button1.Location = new System.Drawing.Point(42, 808);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(145, 73);
+            this.button1.TabIndex = 52;
+            this.button1.Text = "   Trả";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnCancel.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnCancel.ImageKey = "Hủy.jpg";
+            this.btnCancel.ImageList = this.imageList2;
+            this.btnCancel.Location = new System.Drawing.Point(221, 808);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(145, 73);
+            this.btnCancel.TabIndex = 53;
+            this.btnCancel.Text = "   Hủy";
+            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // FormCTmuontra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1125, 913);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.btnReset);
@@ -476,5 +513,7 @@ namespace QuanLyThuVien
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ImageList imageList2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
