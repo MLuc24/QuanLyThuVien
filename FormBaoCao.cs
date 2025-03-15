@@ -14,10 +14,10 @@ namespace QuanLyThuVien
         private string tenNhanVien;
         private string ketnoi = ConfigurationManager.ConnectionStrings["qltv"].ConnectionString;
 
-        public FormBaoCao()
+        public FormBaoCao(string tenNV)
         {
             InitializeComponent();
-           // this.tenNhanVien = tenNV;
+            this.tenNhanVien = tenNV;
         }
 
         private void FormBaoCao_Load(object sender, EventArgs e)
@@ -35,10 +35,11 @@ namespace QuanLyThuVien
                             da.Fill(dt);
 
                             // Load Crystal Report
-                            CrystalReport5 rpt = new CrystalReport5();
-
+                            CR_DSSACH_TL rpt = new CR_DSSACH_TL();
+                            
                             // Đưa dữ liệu vào Crystal Report
                             rpt.SetDataSource(dt);
+                            rpt.SetParameterValue("TenNhanVien", this.tenNhanVien);
                             crystalReportViewer1.ReportSource = rpt;
                             crystalReportViewer1.Refresh();
                         }

@@ -16,14 +16,14 @@ namespace QuanLyThuVien {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CrystalReport2 : ReportClass {
+    public class CR_RC_DG : ReportClass {
         
-        public CrystalReport2() {
+        public CR_RC_DG() {
         }
         
         public override string ResourceName {
             get {
-                return "CrystalReport2.rpt";
+                return "CR_RC_DG.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace QuanLyThuVien {
         
         public override string FullResourceName {
             get {
-                return "QuanLyThuVien.CrystalReport2.rpt";
+                return "QuanLyThuVien.CR_RC_DG.rpt";
             }
             set {
                 // Do nothing
@@ -98,9 +98,9 @@ namespace QuanLyThuVien {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCrystalReport2 : Component, ICachedReport {
+    public class CachedCR_RC_DG : Component, ICachedReport {
         
-        public CachedCrystalReport2() {
+        public CachedCR_RC_DG() {
         }
         
         [Browsable(false)]
@@ -137,7 +137,7 @@ namespace QuanLyThuVien {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CrystalReport2 rpt = new CrystalReport2();
+            CR_RC_DG rpt = new CR_RC_DG();
             rpt.Site = this.Site;
             return rpt;
         }

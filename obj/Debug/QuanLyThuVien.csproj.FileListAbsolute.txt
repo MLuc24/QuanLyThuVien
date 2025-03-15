@@ -42,3 +42,16 @@ E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\CrystalDecisions.ReportAppServer.Common
 E:\Lthsk\Winform\QuanLyThuVien\obj\Debug\QuanLyThuVien.FormInBaoCao.resources
 E:\Lthsk\Winform\QuanLyThuVien\obj\Debug\QuanLyThuVien.csproj.CopyComplete
 E:\Lthsk\Winform\QuanLyThuVien\obj\Debug\QuanLyThuVien.FormBaoCao.resources
+E:\Lthsk\Winform\QuanLyThuVien\obj\Debug\QuanLyThuVien.FormBaoCaoDG.resources
+E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\CR_TL_MONTH.rpt
+E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\CR_TL_MONTH.cs
+E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\CR_DG.rpt
+E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\CR_DG_QH.rpt
+E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\CR_PM_DG.rpt
+E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\CR_RC_DG.rpt
+E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\CR_DSSACH_TL.rpt
+E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\CR_DG.cs
+E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\CR_DG_QH.cs
+E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\CR_PM_DG.cs
+E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\CR_RC_DG.cs
+E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\CR_DSSACH_TL.cs

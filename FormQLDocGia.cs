@@ -15,13 +15,15 @@ namespace QuanLyThuVien
     public partial class FormQLDocGia : Form
     {
         private string kn;
+        private string tenNhanVien;
         private bool isAdding = false;
-        public FormQLDocGia()
+        public FormQLDocGia(string tenNV)
         {
             InitializeComponent();
             kn = ConfigurationManager.ConnectionStrings["qltv"].ConnectionString;
             InitializeControls();
             this.KeyPreview = true;
+            this.tenNhanVien = tenNV;
         }
 
         private void Loadata()
@@ -483,6 +485,12 @@ namespace QuanLyThuVien
             {
                 errorProvider6.SetError(dNgaylapthe, ""); // Xóa lỗi nếu hợp lệ
             }
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            FormBaoCaoDG reportForm = new FormBaoCaoDG(tenNhanVien);
+            reportForm.ShowDialog(); // Mở form báo cáo
         }
     }
 }

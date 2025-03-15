@@ -308,50 +308,8 @@ namespace QuanLyThuVien
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-
-            using (SqlConnection connection = new SqlConnection(kn))
-            {
-                string sql = @"
-                    SELECT 
-                pt.sMaphieuthu AS [Mã phiếu thu], 
-                dg.sTendocgia AS [Tên độc giả],
-                ISNULL(pt.fConlai, 0) + ISNULL(pt.fSotienthu, 0) AS [Tổng nợ], 
-                pt.fSotienthu AS [Số tiền thu], 
-                pt.fConlai AS [Còn lại], 
-                pt.dNgaythu AS [Ngày thu] 
-                FROM tblPhieuThu pt
-                JOIN tblDocGia dg ON pt.sMadocgia = dg.sMadocgia
-                WHERE pt.sMaphieuthu = @MaPhieuThu";
-
-                using (SqlCommand cmd = new SqlCommand(sql, connection))
-                {
-                    cmd.Parameters.AddWithValue("@MaPhieuThu", txtMaPhieuThu.Text);
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataSet ds = new DataSet();
-                    da.Fill(ds, "PhieuThu");
-
-                    if (!ds.Tables["PhieuThu"].Columns.Contains("Tổng nợ"))
-                    {
-                        MessageBox.Show("Cột 'Tổng nợ' không có trong dữ liệu!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-                    // Load báo cáo Crystal Report
-                    string reportPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Report", "CrystalReport3.rpt");
-                    CrystalReport3 rpt = new CrystalReport3();
-                    rpt.Load(reportPath);
-                    rpt.SetDataSource(ds.Tables["PhieuThu"]);
-
-                    // Truyền giá trị "Tên nhân viên" vào báo cáo
-                    rpt.SetParameterValue("TenNhanVien", this.tenNhanVien);
-
-                    // Hiển thị báo cáo
-                    FormInBaoCao f = new FormInBaoCao();
-                    f.crystalReportViewer1.ReportSource = rpt;
-                    f.ShowDialog();
-                }
-            }
-
+            FormInBaoCao reportForm = new FormInBaoCao("CR_RC_DG", this.tenNhanVien, null, null, txtMaPhieuThu.Text);
+            reportForm.ShowDialog();
         }
 
         private void txtMaPhieuThu_TextChanged(object sender, EventArgs e)

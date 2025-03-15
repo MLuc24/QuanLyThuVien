@@ -10,14 +10,16 @@ namespace QuanLyThuVien
     public partial class FormQLSach : Form
     {
         private string ketnoi;
+        private string tenNhanVien;
         private bool isAdding = false;
 
-        public FormQLSach()
+        public FormQLSach(string tenNV)
         {
             InitializeComponent();
             ketnoi = ConfigurationManager.ConnectionStrings["qltv"].ConnectionString;
             InitializeControls();
             this.KeyPreview = true;
+            this.tenNhanVien = tenNV;
         }
 
         private void LoadData()
@@ -241,10 +243,9 @@ namespace QuanLyThuVien
         private void btnCancel_Click(object sender, EventArgs e)
         {
             ClearError();
-
             InitializeControls();
             isAdding = false;
-            ClearTextBoxes(); // Xóa mã sách khi hủy
+            ClearTextBoxes(); 
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -473,7 +474,7 @@ namespace QuanLyThuVien
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            FormBaoCao reportForm = new FormBaoCao();
+            FormBaoCao reportForm = new FormBaoCao(tenNhanVien);
             reportForm.ShowDialog();
         }
 

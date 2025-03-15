@@ -50,7 +50,7 @@ namespace QuanLyThuVien
 
         private void quảnLýSáchToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormQLSach f2 = new FormQLSach();
+            FormQLSach f2 = new FormQLSach(tenNhanVien);
             f2.Owner = this;
             f2.Show();
         }
@@ -118,7 +118,7 @@ namespace QuanLyThuVien
 
         private void quảnLýPhiếuThuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormQLDocGia f2 = new FormQLDocGia();
+            FormQLDocGia f2 = new FormQLDocGia(tenNhanVien);
             f2.Owner = this;
             f2.Show();
         }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QuanLyThuVien.Report {
+namespace QuanLyThuVien {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -16,14 +16,14 @@ namespace QuanLyThuVien.Report {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CrystalReport1 : ReportClass {
+    public class CR_PM_DG : ReportClass {
         
-        public CrystalReport1() {
+        public CR_PM_DG() {
         }
         
         public override string ResourceName {
             get {
-                return "CrystalReport1.rpt";
+                return "CR_PM_DG.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace QuanLyThuVien.Report {
         
         public override string FullResourceName {
             get {
-                return "QuanLyThuVien.Report.CrystalReport1.rpt";
+                return "QuanLyThuVien.CR_PM_DG.rpt";
             }
             set {
                 // Do nothing
@@ -98,9 +98,9 @@ namespace QuanLyThuVien.Report {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCrystalReport1 : Component, ICachedReport {
+    public class CachedCR_PM_DG : Component, ICachedReport {
         
-        public CachedCrystalReport1() {
+        public CachedCR_PM_DG() {
         }
         
         [Browsable(false)]
@@ -137,7 +137,7 @@ namespace QuanLyThuVien.Report {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CrystalReport1 rpt = new CrystalReport1();
+            CR_PM_DG rpt = new CR_PM_DG();
             rpt.Site = this.Site;
             return rpt;
         }

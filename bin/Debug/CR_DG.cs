@@ -16,14 +16,14 @@ namespace QuanLyThuVien {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CrystalReport4 : ReportClass {
+    public class CR_DG : ReportClass {
         
-        public CrystalReport4() {
+        public CR_DG() {
         }
         
         public override string ResourceName {
             get {
-                return "CrystalReport4.rpt";
+                return "CR_DG.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace QuanLyThuVien {
         
         public override string FullResourceName {
             get {
-                return "QuanLyThuVien.CrystalReport4.rpt";
+                return "QuanLyThuVien.CR_DG.rpt";
             }
             set {
                 // Do nothing
@@ -90,41 +90,17 @@ namespace QuanLyThuVien {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Thang {
-            get {
-                return this.DataDefinition.ParameterFields[0];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Nam {
-            get {
-                return this.DataDefinition.ParameterFields[1];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_MaTheLoai {
-            get {
-                return this.DataDefinition.ParameterFields[2];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.Shared.IParameterField Parameter_TenNhanVien {
             get {
-                return this.DataDefinition.ParameterFields[3];
+                return this.DataDefinition.ParameterFields[0];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCrystalReport4 : Component, ICachedReport {
+    public class CachedCR_DG : Component, ICachedReport {
         
-        public CachedCrystalReport4() {
+        public CachedCR_DG() {
         }
         
         [Browsable(false)]
@@ -161,7 +137,7 @@ namespace QuanLyThuVien {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CrystalReport4 rpt = new CrystalReport4();
+            CR_DG rpt = new CR_DG();
             rpt.Site = this.Site;
             return rpt;
         }

@@ -257,52 +257,8 @@ namespace QuanLyThuVien
 
         private void btnXem_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(kn))
-            {
-                string sql = @"
-                SELECT 
-                    ct.sMaphieu , 
-                    dg.sTendocgia , 
-                    s.sTensach , 
-                    tl.sTentheloai,
-                    s.sNhaxuatban,
-                    ct.iSlmuon, 
-                    ct.dNgayhentra      
-                FROM tblCTmuontra ct 
-                JOIN tblPhieumuon pm ON pm.sMaphieu = ct.sMaphieu
-                JOIN tblDocGia dg ON pm.sMadocgia = dg.sMadocgia
-                JOIN tblSach s ON ct.sMasach = s.sMasach
-                JOIN tblTheloai tl On s.sMatheloai = tl.sMatheloai 
-                WHERE ct.sTinhtrangtra IS NULL AND ct.sMaphieu = @MaPhieu";
-
-                using (SqlCommand cmd = new SqlCommand(sql, connection))
-                {
-                    // Thêm tham số @MaPhieu và gán giá trị
-                    cmd.Parameters.Add("@MaPhieu", SqlDbType.VarChar).Value = maPhieu;
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataSet1 ds = new DataSet1();
-                    da.Fill(ds, "Danhsach");
-
-                    if (ds.Tables["Danhsach"].Rows.Count == 0)
-                    {
-                        MessageBox.Show("Không có dữ liệu trễ hạn để in báo cáo!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-
-                    // Tạo báo cáo Crystal Report
-                    CrystalReport2 rpt = new CrystalReport2();
-                    rpt.SetDataSource(ds.Tables["Danhsach"]);
-
-                    // Truyền giá trị "Tên nhân viên" vào báo cáo
-                    rpt.SetParameterValue("TenNhanVien", this.tenNhanVien);
-
-                    // Hiển thị báo cáo
-                    FormInBaoCao f = new FormInBaoCao();
-                    f.crystalReportViewer1.ReportSource = rpt;
-                    f.ShowDialog();
-                }
-            }
+            FormInBaoCao reportForm = new FormInBaoCao("CR_PM_DG", this.tenNhanVien, null, txtMaPhieu.Text);
+            reportForm.ShowDialog();
         }
 
         private void FormCTmuontra_Load(object sender, EventArgs e)

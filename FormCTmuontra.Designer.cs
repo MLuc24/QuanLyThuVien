@@ -84,7 +84,7 @@ namespace QuanLyThuVien
             this.btnXem.Name = "btnXem";
             this.btnXem.Size = new System.Drawing.Size(145, 73);
             this.btnXem.TabIndex = 49;
-            this.btnXem.Text = "   In";
+            this.btnXem.Text = "  Xuất";
             this.btnXem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnXem.UseVisualStyleBackColor = false;
             this.btnXem.Click += new System.EventHandler(this.btnXem_Click);

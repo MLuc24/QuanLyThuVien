@@ -189,37 +189,12 @@ namespace QuanLyThuVien
                 int? thang = cboThang.SelectedItem as int?;
                 int? nam = cboNam.SelectedItem as int?;
 
-                using (SqlConnection connection = new SqlConnection(kn))
-                {
-                    string sql = "sp_ThongKeSachMuon"; // Gọi stored procedure
-                    SqlCommand cmd = new SqlCommand(sql, connection);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    // Thêm tham số vào stored procedure
-                    cmd.Parameters.AddWithValue("@Thang", thang ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Nam", nam ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@MaTheLoai", maTheLoai ?? (object)DBNull.Value);
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataSet1 ds = new DataSet1();
-                    da.Fill(ds, "Danhsach");
-
-                    CrystalReport4 rpt = new CrystalReport4();
-                    //rpt.Load(reportPath);
-                    rpt.SetDataSource(ds.Tables[1]);
-
-                    // Truyền tham số "Tên nhân viên" vào báo cáo (nếu cần)
-                    rpt.SetParameterValue("TenNhanVien", this.tenNhanVien);
-
-                    // Hiển thị báo cáo trên FormInBaoCao
-                    FormInBaoCao f = new FormInBaoCao();
-                    f.crystalReportViewer1.ReportSource = rpt;
-                    f.ShowDialog();
-                }
+                FormInBaoCao reportForm = new FormInBaoCao("CR_TL_MONTH", this.tenNhanVien, maTheLoai, null, null, thang, nam);
+                reportForm.ShowDialog();
             }
             else
             {
-                MessageBox.Show("Vui lòng chọn một thể loại trước khi xuất báo cáo!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng chọn một thể loại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

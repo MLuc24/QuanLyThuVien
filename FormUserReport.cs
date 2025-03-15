@@ -81,45 +81,16 @@ namespace QuanLyThuVien
 
         private void btnReport2_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(kn))
-            {
-                string sql = @"
-            SELECT 
-                ct.sMaphieu, 
-                dg.sTendocgia, 
-                s.sTensach, 
-                ct.dNgayhentra, 
-                ct.dNgaytra, 
-                ct.iSlmuon, 
-                ct.sTinhtrangtra,
-                ct.sGhichu
-            FROM tblCTmuontra ct 
-            JOIN tblPhieumuon pm ON pm.sMaphieu = ct.sMaphieu
-            JOIN tblDocGia dg ON pm.sMadocgia = dg.sMadocgia
-            JOIN tblSach s ON ct.sMasach = s.sMasach
-            WHERE ct.sTinhtrangtra IS NOT NULL AND ct.dNgaytra > ct.dNgayhentra";
-
-                SqlDataAdapter da = new SqlDataAdapter(sql, connection);
-                DataSet1 ds = new DataSet1();
-                da.Fill(ds, "Danhsach");
-
-                // Tạo báo cáo Crystal Report
-                string reportPath = Application.StartupPath + @"\Report\CrystalReport1.rpt";
-                CrystalReport1 rpt = new CrystalReport1();
-                rpt.Load(reportPath);
-                rpt.SetDataSource(ds.Tables[1]);
-
-                // Truyền giá trị "Tên nhân viên" vào báo cáo
-                rpt.SetParameterValue("TenNhanVien", this.tenNhanVien);
-
-                // Hiển thị báo cáo trên CrystalReportViewer
-                FormInBaoCao f = new FormInBaoCao();
-                f.crystalReportViewer1.ReportSource = rpt;
-                f.ShowDialog();
-            }
+            FormInBaoCao reportForm = new FormInBaoCao("CR_DG_QH", this.tenNhanVien);
+            reportForm.ShowDialog();
         }
 
         private void FormUserReport_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
         {
 
         }
