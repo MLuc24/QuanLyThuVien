@@ -55,3 +55,5 @@ E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\CR_DG_QH.cs
 E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\CR_PM_DG.cs
 E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\CR_RC_DG.cs
 E:\Lthsk\Winform\QuanLyThuVien\bin\Debug\CR_DSSACH_TL.cs
+E:\Lthsk\Winform\QuanLyThuVien\obj\Debug\QuanLyThuVien.FormBaoCaoUser.resources
+E:\Lthsk\Winform\QuanLyThuVien\obj\Debug\QuanLyThuVien.FormBC.resources

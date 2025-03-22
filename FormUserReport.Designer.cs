@@ -274,6 +274,7 @@ namespace QuanLyThuVien
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form10";
             this.Load += new System.EventHandler(this.FormUserReport_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormUserReport_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);

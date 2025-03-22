@@ -103,8 +103,8 @@ namespace QuanLyThuVien
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string tenTaiKhoan = txtTaiKhoan.Text;
-            string matKhau = txtMk.Text;
+            string tenTaiKhoan = txtTaiKhoan.Text.Trim();
+            string matKhau = txtMk.Text.Trim();
 
             if (tenTaiKhoan == "Nhập tài khoản" || matKhau == "Nhập mật khẩu")
             {
@@ -127,7 +127,7 @@ namespace QuanLyThuVien
                 {
                     cnn.Open();
                     using (SqlCommand cmd = new SqlCommand(@"
-                SELECT sManv, sMadocgia 
+                SELECT sMatk, sManv, sMadocgia, soluot 
                 FROM tblTaiKhoan
                 WHERE sTentk = @TenTaiKhoan
                 AND sMatkhau = @MatKhau
@@ -140,27 +140,35 @@ namespace QuanLyThuVien
                         {
                             if (reader.Read())
                             {
+                                string sMatk = reader["sMatk"].ToString();
                                 string maNhanVien = reader["sManv"]?.ToString();
                                 string maDocGia = reader["sMadocgia"]?.ToString();
+                                int soluot = reader["soluot"] != DBNull.Value ? Convert.ToInt32(reader["soluot"]) : 0;
 
+                                reader.Close();
+
+                                // Tăng số lượt truy cập
+                                using (SqlCommand cmdUpdate = new SqlCommand("UPDATE tblTaiKhoan SET soluot = @soluot WHERE sMatk = @sMatk", cnn))
+                                {
+                                    cmdUpdate.Parameters.AddWithValue("@soluot", soluot + 1);
+                                    cmdUpdate.Parameters.AddWithValue("@sMatk", sMatk);
+                                    cmdUpdate.ExecuteNonQuery();
+                                }
+
+                                MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                // Chuyển đến form chính
                                 taiKhoan = tenTaiKhoan; // Lưu tài khoản đăng nhập
 
                                 if (!string.IsNullOrEmpty(maNhanVien))
                                 {
-                                    FormIndex formNV = new FormIndex(maNhanVien, taiKhoan,tenTaiKhoan);
+                                    FormIndex formNV = new FormIndex(maNhanVien, taiKhoan, tenTaiKhoan);
                                     formNV.Show();
-                                    this.Hide();
                                 }
                                 else if (!string.IsNullOrEmpty(maDocGia))
                                 {
-                                    // Đăng nhập độc giả
                                     FormUser formDocGia = new FormUser(maDocGia, taiKhoan);
                                     formDocGia.Show();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Tài khoản không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    return;
                                 }
 
                                 this.Hide();
@@ -168,7 +176,7 @@ namespace QuanLyThuVien
                             else
                             {
                                 MessageBox.Show("Tài khoản hoặc mật khẩu không đúng, hoặc tài khoản đã bị xóa!",
-                                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
@@ -198,6 +206,11 @@ namespace QuanLyThuVien
             {
                 button1.PerformClick(); // Kích hoạt sự kiện Click của btnDangNhap
             }
+        }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

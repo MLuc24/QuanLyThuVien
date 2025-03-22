@@ -38,7 +38,6 @@ namespace QuanLyThuVien
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnReset = new System.Windows.Forms.Button();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhieuMuonTra)).BeginInit();
             this.SuspendLayout();
@@ -121,27 +120,12 @@ namespace QuanLyThuVien
             this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList2.Images.SetKeyName(0, "Logo.png");
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button1.ImageKey = "in.jpg";
-            this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(221, 887);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(164, 73);
-            this.button1.TabIndex = 53;
-            this.button1.Text = "   Xuất";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = false;
-            // 
             // FormHistoryReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1495, 981);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.label3);
@@ -149,7 +133,6 @@ namespace QuanLyThuVien
             this.Name = "FormHistoryReport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form11";
-            this.Load += new System.EventHandler(this.Form11_Load);
             this.groupBox8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhieuMuonTra)).EndInit();
             this.ResumeLayout(false);
@@ -165,6 +148,5 @@ namespace QuanLyThuVien
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.ImageList imageList2;
-        private System.Windows.Forms.Button button1;
     }
 }

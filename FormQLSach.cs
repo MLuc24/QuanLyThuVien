@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Data;
+using System.Globalization;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Configuration;
 using System.ComponentModel;
+using System.Collections.Generic;
+
+
 
 namespace QuanLyThuVien
 {
@@ -25,7 +29,6 @@ namespace QuanLyThuVien
         private void LoadData()
         {
             Library.LoadDataToGridView(dssach, "Select * from v_DSS");
-            dssach.Columns["Ngày nhập"].DefaultCellStyle.Format = "dd/MM/yyyy";
         }
 
         private void LoadTheLoai()
@@ -55,11 +58,9 @@ namespace QuanLyThuVien
             btnDelete.Enabled = false;
             btnEdit.Enabled = false;
             btnAdd.Enabled = true;
-
             isAdding = false; 
             LoadTheLoai();
-
-            cboMatheloai.SelectedIndex = 0; 
+            cboMatheloai.SelectedIndex = 0;
         }
 
         private void DisableTextBoxes()
@@ -115,7 +116,15 @@ namespace QuanLyThuVien
                 cboMatheloai.Text = selectedRow.Cells["Thể loại"].Value.ToString(); // Hiển thị tên thể loại
                 rdoMoi.Checked = selectedRow.Cells["Tình trạng"].Value.ToString() == "Mới";
                 rdoCu.Checked = selectedRow.Cells["Tình trạng"].Value.ToString() == "Cũ";
-                dateTimePicker1.Value = Convert.ToDateTime(selectedRow.Cells["Ngày nhập"].Value);
+                if (selectedRow.Cells["Ngày nhập"].Value != null &&
+                DateTime.TryParseExact(selectedRow.Cells["Ngày nhập"].Value.ToString(),
+                           "dd/MM/yyyy",
+                           CultureInfo.InvariantCulture,
+                           DateTimeStyles.None,
+                           out DateTime ngayNhap))
+                {
+                    dateTimePicker1.Value = ngayNhap;
+                }
 
                 DisableTextBoxes();
                 btnAdd.Enabled = true;
@@ -143,7 +152,7 @@ namespace QuanLyThuVien
 
         private void ClearTextBoxes()
         {
-            txtMasach.Text = string.Empty; // Đảm bảo mã sách không giữ lại
+            txtMasach.Text = string.Empty; 
             txtTensach.Text = string.Empty;
             txtNXB.Text = string.Empty;
             txtSl.Text = string.Empty;
@@ -308,8 +317,6 @@ namespace QuanLyThuVien
             LoadData();
         }
 
-
-
         private void txtSl_Validating(object sender, CancelEventArgs e)
         {
             if (txtSl.Text == "")
@@ -330,21 +337,11 @@ namespace QuanLyThuVien
             string query = "";
 
             if (rdoMaSach.Checked)
-                query = "SELECT * FROM v_DSS WHERE [Mã sách] = @Keyword "; // Thêm điều kiện IsDeleted = 0
+                query = "SELECT * FROM v_DSS WHERE [Thể loại] LIKE @Keyword "; // Thêm điều kiện IsDeleted = 0
             else if (rdoTenSach.Checked)
                 query = "SELECT * FROM v_DSS WHERE [Tên sách] LIKE @Keyword "; // Thêm điều kiện IsDeleted = 0
             else if (rdoTheLoai.Checked)
-                query = @"SELECT 
-                sMasach AS [Mã sách],
-                sTensach AS [Tên sách],
-                s.sMatheloai AS [Mã thể loại],
-                sNhaxuatban AS [NXB],
-                dNgaynhap AS [Ngày nhập],
-                fDongia AS [Đơn giá],
-                iSNhap AS [Số lượng],
-                sTinhtrang AS [Tình trạng]
-            FROM tblSach s JOIN tblTheloai tl ON s.sMatheloai = tl.sMatheloai
-            WHERE sTentheloai LIKE @Keyword AND isDeleted = 0"; // Thêm điều kiện IsDeleted = 0
+                query = "SELECT * FROM v_DSS WHERE [NXB] LIKE @Keyword"; // Thêm điều kiện IsDeleted = 0
 
 
             if (string.IsNullOrEmpty(search))
@@ -357,12 +354,7 @@ namespace QuanLyThuVien
                 using (SqlCommand cmd = new SqlCommand(query, cnn))
                 {
                     if (!string.IsNullOrEmpty(search))
-                    {
-                        if (rdoMaSach.Checked)
-                            cmd.Parameters.AddWithValue("@Keyword", search);
-                        else
                             cmd.Parameters.AddWithValue("@Keyword", "%" + search + "%");
-                    }
 
                     using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
                     {
@@ -379,11 +371,7 @@ namespace QuanLyThuVien
         {
             LoadData();
             InitializeControls();
-            ClearTextBoxes(); // Đảm bảo mã sách không còn hiển thị
-
-            rdoTenSach.Checked = false;
-            rdoMaSach.Checked = false;
-            rdoTheLoai.Checked = false;
+            ClearTextBoxes(); 
 
             ClearError();
 
@@ -478,38 +466,9 @@ namespace QuanLyThuVien
             reportForm.ShowDialog();
         }
 
-        private void dssach_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void txtTimkiem_KeyUp(object sender, KeyEventArgs e)
         {
-
+            PerformSearch();
         }
-
-
-        //private void btnRestore_Click(object sender, EventArgs e)
-        //{
-        //    if (dssach.SelectedRows.Count > 0)
-        //    {
-        //        var selectedRow = dssach.SelectedRows[0];
-        //        string maSach = selectedRow.Cells["Mã sách"].Value.ToString();
-
-        //        DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn khôi phục sách này không?", "Xác nhận khôi phục",
-        //            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-        //        if (result == DialogResult.Yes)
-        //        {
-        //            using (SqlConnection cnn = new SqlConnection(ketnoi))
-        //            {
-        //                cnn.Open();
-        //                using (SqlCommand cmd = new SqlCommand("UPDATE tblSach SET IsDeleted = 0 WHERE sMasach = @MaSach", cnn))
-        //                {
-        //                    cmd.Parameters.AddWithValue("@MaSach", maSach);
-        //                    cmd.ExecuteNonQuery();
-        //                }
-        //            }
-
-        //            LoadData(); // Tải lại dữ liệu sau khi khôi phục
-        //            InitializeControls();
-        //        }
-        //    }
-        //}
     }
 }

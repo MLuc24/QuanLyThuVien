@@ -85,7 +85,7 @@ namespace QuanLyThuVien
                         cmd.CommandText = @"
                             SELECT pt.sMaphieuthu AS [Mã phiếu thu], 
                                    dg.sTendocgia AS [Tên độc giả],
-                                   ISNULL(pt.fConlai, 0) + ISNULL(pt.fSotienthu, 0) AS [Tổng nợ], 
+                                   CAST(ISNULL(pt.fConlai, 0) + ISNULL(pt.fSotienthu, 0) AS DECIMAL(18,2)) AS [Tổng nợ], 
                                    pt.fSotienthu AS [Số tiền thu], 
                                    pt.fConlai AS [Còn lại], 
                                    pt.dNgaythu AS [Ngày thu] 

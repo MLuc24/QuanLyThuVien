@@ -32,7 +32,7 @@ namespace QuanLyThuVien
                 dg.sMadocgia AS [Mã độc giả],
                 sTendocgia AS [Tên độc giả], 
                 sTenloaidocgia AS [Loại độc giả],
-                count(sMasach) as [Số lần mượn],
+                COUNT(DISTINCT pt.sMaphieu) AS [Số lần mượn],
                 sum(iSlmuon) as [SL mượn]
                 
             FROM 
@@ -92,7 +92,28 @@ namespace QuanLyThuVien
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
+            FormBaoCaoUser reportForm = new FormBaoCaoUser(tenNhanVien);
+            reportForm.ShowDialog();
+        }
 
+        private void FormUserReport_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Kiểm tra nếu phím được nhấn là Esc
+            if (e.KeyCode == Keys.Escape)
+            {
+                // Hiển thị hộp thoại xác nhận
+                DialogResult result = MessageBox.Show(
+                    "Bạn có chắc chắn muốn thoát form không?",
+                    "Xác nhận thoát",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
         }
     }
 }

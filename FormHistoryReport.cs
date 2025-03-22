@@ -18,8 +18,6 @@ namespace QuanLyThuVien
             btnXoa.Enabled = false;
         }
 
-
-
         private void LoadData()
         {
             Library.LoadDataToGridView(dgvPhieuMuonTra, "Select * from v_DSPT");
@@ -79,12 +77,6 @@ namespace QuanLyThuVien
             {
                 MessageBox.Show("Vui lòng chọn phiếu trả cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-            
-
-        private void Form11_Load(object sender, EventArgs e)
-        {
-
-        }
+        }          
     }
 }

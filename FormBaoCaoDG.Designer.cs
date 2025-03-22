@@ -36,8 +36,10 @@ namespace QuanLyThuVien
             this.btnIn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rdooNam = new System.Windows.Forms.RadioButton();
             this.rdoNu = new System.Windows.Forms.RadioButton();
+            this.rdooNam = new System.Windows.Forms.RadioButton();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,7 +78,7 @@ namespace QuanLyThuVien
             // 
             // btnIn
             // 
-            this.btnIn.Location = new System.Drawing.Point(907, 0);
+            this.btnIn.Location = new System.Drawing.Point(1180, 1);
             this.btnIn.Name = "btnIn";
             this.btnIn.Size = new System.Drawing.Size(119, 54);
             this.btnIn.TabIndex = 4;
@@ -103,17 +105,6 @@ namespace QuanLyThuVien
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Giới tính";
             // 
-            // rdooNam
-            // 
-            this.rdooNam.AutoSize = true;
-            this.rdooNam.Location = new System.Drawing.Point(17, 30);
-            this.rdooNam.Name = "rdooNam";
-            this.rdooNam.Size = new System.Drawing.Size(87, 29);
-            this.rdooNam.TabIndex = 0;
-            this.rdooNam.TabStop = true;
-            this.rdooNam.Text = "Nam";
-            this.rdooNam.UseVisualStyleBackColor = true;
-            // 
             // rdoNu
             // 
             this.rdoNu.AutoSize = true;
@@ -125,11 +116,38 @@ namespace QuanLyThuVien
             this.rdoNu.Text = "Nữ";
             this.rdoNu.UseVisualStyleBackColor = true;
             // 
+            // rdooNam
+            // 
+            this.rdooNam.AutoSize = true;
+            this.rdooNam.Location = new System.Drawing.Point(17, 30);
+            this.rdooNam.Name = "rdooNam";
+            this.rdooNam.Size = new System.Drawing.Size(87, 29);
+            this.rdooNam.TabIndex = 0;
+            this.rdooNam.TabStop = true;
+            this.rdooNam.Text = "Nam";
+            this.rdooNam.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(1000, 13);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(174, 31);
+            this.textBox1.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(904, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(140, 31);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Độ tuổi";
+            // 
             // FormBaoCaoDG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2307, 1326);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnIn);
@@ -137,6 +155,7 @@ namespace QuanLyThuVien
             this.Controls.Add(this.txtTendocgia);
             this.Controls.Add(this.cboMadocgia);
             this.Controls.Add(this.rdoNam);
+            this.Controls.Add(this.label3);
             this.Name = "FormBaoCaoDG";
             this.Text = "FormBaoCaoDG";
             this.Load += new System.EventHandler(this.FormBaoCaoDG_Load);
@@ -158,5 +177,7 @@ namespace QuanLyThuVien
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rdoNu;
         private System.Windows.Forms.RadioButton rdooNam;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label3;
     }
 }

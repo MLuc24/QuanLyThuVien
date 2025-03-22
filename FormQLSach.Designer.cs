@@ -221,13 +221,12 @@ namespace QuanLyThuVien
             this.dssach.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dssach.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dssach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dssach.Location = new System.Drawing.Point(7, 31);
+            this.dssach.Location = new System.Drawing.Point(13, 31);
             this.dssach.Name = "dssach";
             this.dssach.RowHeadersWidth = 82;
             this.dssach.RowTemplate.Height = 33;
             this.dssach.Size = new System.Drawing.Size(1263, 291);
             this.dssach.TabIndex = 0;
-            this.dssach.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dssach_CellContentClick);
             this.dssach.SelectionChanged += new System.EventHandler(this.dssach_SelectionChanged);
             // 
             // groupBox4
@@ -254,7 +253,7 @@ namespace QuanLyThuVien
             this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.Controls.Add(this.label1);
             this.groupBox4.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.groupBox4.Location = new System.Drawing.Point(170, 222);
+            this.groupBox4.Location = new System.Drawing.Point(177, 199);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(970, 309);
             this.groupBox4.TabIndex = 11;
@@ -462,9 +461,9 @@ namespace QuanLyThuVien
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.groupBox1.Location = new System.Drawing.Point(172, 51);
+            this.groupBox1.Location = new System.Drawing.Point(179, 50);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(968, 141);
+            this.groupBox1.Size = new System.Drawing.Size(968, 122);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tìm kiếm Sách";
@@ -472,9 +471,9 @@ namespace QuanLyThuVien
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.txtTimkiem);
-            this.groupBox3.Location = new System.Drawing.Point(528, 34);
+            this.groupBox3.Location = new System.Drawing.Point(579, 34);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(395, 93);
+            this.groupBox3.Size = new System.Drawing.Size(383, 88);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Nhập thông tin cần Tìm kiếm";
@@ -488,6 +487,7 @@ namespace QuanLyThuVien
             this.txtTimkiem.Size = new System.Drawing.Size(355, 41);
             this.txtTimkiem.TabIndex = 0;
             this.txtTimkiem.TextChanged += new System.EventHandler(this.txtTimkiem_TextChanged);
+            this.txtTimkiem.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtTimkiem_KeyUp);
             // 
             // groupBox2
             // 
@@ -496,7 +496,7 @@ namespace QuanLyThuVien
             this.groupBox2.Controls.Add(this.rdoMaSach);
             this.groupBox2.Location = new System.Drawing.Point(17, 31);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(485, 92);
+            this.groupBox2.Size = new System.Drawing.Size(556, 91);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tìm theo";
@@ -506,10 +506,10 @@ namespace QuanLyThuVien
             this.rdoTheLoai.AutoSize = true;
             this.rdoTheLoai.Location = new System.Drawing.Point(346, 44);
             this.rdoTheLoai.Name = "rdoTheLoai";
-            this.rdoTheLoai.Size = new System.Drawing.Size(121, 31);
+            this.rdoTheLoai.Size = new System.Drawing.Size(93, 31);
             this.rdoTheLoai.TabIndex = 2;
             this.rdoTheLoai.TabStop = true;
-            this.rdoTheLoai.Text = "Thể loại";
+            this.rdoTheLoai.Text = "NXB";
             this.rdoTheLoai.UseVisualStyleBackColor = true;
             this.rdoTheLoai.CheckedChanged += new System.EventHandler(this.rdoTheLoai_CheckedChanged);
             // 
@@ -530,10 +530,10 @@ namespace QuanLyThuVien
             this.rdoMaSach.AutoSize = true;
             this.rdoMaSach.Location = new System.Drawing.Point(16, 44);
             this.rdoMaSach.Name = "rdoMaSach";
-            this.rdoMaSach.Size = new System.Drawing.Size(124, 31);
+            this.rdoMaSach.Size = new System.Drawing.Size(121, 31);
             this.rdoMaSach.TabIndex = 0;
             this.rdoMaSach.TabStop = true;
-            this.rdoMaSach.Text = "Mã sách";
+            this.rdoMaSach.Text = "Thể loại";
             this.rdoMaSach.UseVisualStyleBackColor = true;
             this.rdoMaSach.CheckedChanged += new System.EventHandler(this.rdoMaSach_CheckedChanged);
             // 

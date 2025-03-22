@@ -71,6 +71,7 @@ namespace QuanLyThuVien
             string tenDocGia = txtTendocgia.Text.Trim();
             string maLoaiDocGia = cboMadocgia.SelectedValue?.ToString();
             string gioiTinh = "";
+            string dotuoi = textBox1.Text.Trim();
 
             if (rdooNam.Checked)
             {
@@ -96,8 +97,12 @@ namespace QuanLyThuVien
             {
                 filter += $" AND [Giới tính] = '{gioiTinh}'";
             }
+            if (!string.IsNullOrEmpty(dotuoi))
+            {
+                filter += $" AND [Độ tuổi] > '{dotuoi}'";
+            }
 
-            dv.RowFilter = filter; 
+                dv.RowFilter = filter; 
 
             LoadReport(dv.ToTable()); 
         }

@@ -33,9 +33,7 @@ namespace QuanLyThuVien
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form7));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnXoaSach = new System.Windows.Forms.Button();
             this.imageList3 = new System.Windows.Forms.ImageList(this.components);
-            this.btnThem = new System.Windows.Forms.Button();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.lvSachMuon = new System.Windows.Forms.ListView();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -49,13 +47,8 @@ namespace QuanLyThuVien
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
-            this.btnHuy = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.btnLuu = new System.Windows.Forms.Button();
-            this.btnGiaHan = new System.Windows.Forms.Button();
-            this.btnLap = new System.Windows.Forms.Button();
             this.btnHome = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.dgvPhieuMuon = new System.Windows.Forms.DataGridView();
@@ -86,8 +79,6 @@ namespace QuanLyThuVien
             this.rdoTendocgia = new System.Windows.Forms.RadioButton();
             this.rdoMaPhieu = new System.Windows.Forms.RadioButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnResetLogo = new System.Windows.Forms.Button();
-            this.btnTra = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.dgvPhieu = new System.Windows.Forms.DataGridView();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
@@ -111,6 +102,15 @@ namespace QuanLyThuVien
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnXoaSach = new System.Windows.Forms.Button();
+            this.btnThem = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnHuy = new System.Windows.Forms.Button();
+            this.btnLuu = new System.Windows.Forms.Button();
+            this.btnGiaHan = new System.Windows.Forms.Button();
+            this.btnLap = new System.Windows.Forms.Button();
+            this.btnResetLogo = new System.Windows.Forms.Button();
+            this.btnTra = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox13.SuspendLayout();
@@ -170,20 +170,6 @@ namespace QuanLyThuVien
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Mượn sách";
             // 
-            // btnXoaSach
-            // 
-            this.btnXoaSach.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnXoaSach.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnXoaSach.ImageKey = "down.png";
-            this.btnXoaSach.ImageList = this.imageList3;
-            this.btnXoaSach.Location = new System.Drawing.Point(922, 586);
-            this.btnXoaSach.Name = "btnXoaSach";
-            this.btnXoaSach.Size = new System.Drawing.Size(55, 47);
-            this.btnXoaSach.TabIndex = 43;
-            this.btnXoaSach.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnXoaSach.UseVisualStyleBackColor = false;
-            this.btnXoaSach.Click += new System.EventHandler(this.btnXoaSach_Click);
-            // 
             // imageList3
             // 
             this.imageList3.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList3.ImageStream")));
@@ -191,20 +177,6 @@ namespace QuanLyThuVien
             this.imageList3.Images.SetKeyName(0, "down.png");
             this.imageList3.Images.SetKeyName(1, "down.png");
             this.imageList3.Images.SetKeyName(2, "up.png");
-            // 
-            // btnThem
-            // 
-            this.btnThem.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnThem.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnThem.ImageKey = "up.png";
-            this.btnThem.ImageList = this.imageList3;
-            this.btnThem.Location = new System.Drawing.Point(922, 534);
-            this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(55, 47);
-            this.btnThem.TabIndex = 42;
-            this.btnThem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnThem.UseVisualStyleBackColor = false;
-            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // groupBox13
             // 
@@ -335,38 +307,11 @@ namespace QuanLyThuVien
             this.label10.Text = "Đơn giá :";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.button1.ImageKey = "Logo.png";
-            this.button1.ImageList = this.imageList2;
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(154, 122);
-            this.button1.TabIndex = 40;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // imageList2
             // 
             this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
             this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList2.Images.SetKeyName(0, "Logo.png");
-            // 
-            // btnHuy
-            // 
-            this.btnHuy.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnHuy.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnHuy.ImageKey = "Hủy.jpg";
-            this.btnHuy.ImageList = this.imageList1;
-            this.btnHuy.Location = new System.Drawing.Point(1277, 616);
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(155, 73);
-            this.btnHuy.TabIndex = 39;
-            this.btnHuy.Text = "   Hủy";
-            this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnHuy.UseVisualStyleBackColor = false;
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // imageList1
             // 
@@ -378,51 +323,6 @@ namespace QuanLyThuVien
             this.imageList1.Images.SetKeyName(3, "Thêm.png");
             this.imageList1.Images.SetKeyName(4, "Sửa.jpg");
             this.imageList1.Images.SetKeyName(5, "gia hạn.png");
-            // 
-            // btnLuu
-            // 
-            this.btnLuu.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnLuu.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnLuu.ImageKey = "Lưu.png";
-            this.btnLuu.ImageList = this.imageList1;
-            this.btnLuu.Location = new System.Drawing.Point(1079, 616);
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(155, 73);
-            this.btnLuu.TabIndex = 38;
-            this.btnLuu.Text = "   Lưu";
-            this.btnLuu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnLuu.UseVisualStyleBackColor = false;
-            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
-            // 
-            // btnGiaHan
-            // 
-            this.btnGiaHan.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnGiaHan.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnGiaHan.ImageKey = "gia hạn.png";
-            this.btnGiaHan.ImageList = this.imageList1;
-            this.btnGiaHan.Location = new System.Drawing.Point(1277, 521);
-            this.btnGiaHan.Name = "btnGiaHan";
-            this.btnGiaHan.Size = new System.Drawing.Size(155, 73);
-            this.btnGiaHan.TabIndex = 37;
-            this.btnGiaHan.Text = "Gia hạn";
-            this.btnGiaHan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnGiaHan.UseVisualStyleBackColor = false;
-            this.btnGiaHan.Click += new System.EventHandler(this.btnGiaHan_Click);
-            // 
-            // btnLap
-            // 
-            this.btnLap.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnLap.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnLap.ImageKey = "Thêm.png";
-            this.btnLap.ImageList = this.imageList1;
-            this.btnLap.Location = new System.Drawing.Point(1079, 521);
-            this.btnLap.Name = "btnLap";
-            this.btnLap.Size = new System.Drawing.Size(155, 73);
-            this.btnLap.TabIndex = 35;
-            this.btnLap.Text = "   Lập";
-            this.btnLap.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnLap.UseVisualStyleBackColor = false;
-            this.btnLap.Click += new System.EventHandler(this.btnLap_Click);
             // 
             // btnHome
             // 
@@ -749,33 +649,6 @@ namespace QuanLyThuVien
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Trả sách";
             // 
-            // btnResetLogo
-            // 
-            this.btnResetLogo.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnResetLogo.ImageKey = "Logo.png";
-            this.btnResetLogo.ImageList = this.imageList2;
-            this.btnResetLogo.Location = new System.Drawing.Point(0, 0);
-            this.btnResetLogo.Name = "btnResetLogo";
-            this.btnResetLogo.Size = new System.Drawing.Size(154, 122);
-            this.btnResetLogo.TabIndex = 50;
-            this.btnResetLogo.UseVisualStyleBackColor = false;
-            this.btnResetLogo.Click += new System.EventHandler(this.btnResetLogo_Click_1);
-            // 
-            // btnTra
-            // 
-            this.btnTra.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnTra.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnTra.ImageKey = "Sửa.jpg";
-            this.btnTra.ImageList = this.imageList1;
-            this.btnTra.Location = new System.Drawing.Point(159, 818);
-            this.btnTra.Name = "btnTra";
-            this.btnTra.Size = new System.Drawing.Size(145, 73);
-            this.btnTra.TabIndex = 45;
-            this.btnTra.Text = "  Xem";
-            this.btnTra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnTra.UseVisualStyleBackColor = false;
-            this.btnTra.Click += new System.EventHandler(this.btnTra_Click);
-            // 
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.dgvPhieu);
@@ -996,6 +869,133 @@ namespace QuanLyThuVien
             // errorProvider4
             // 
             this.errorProvider4.ContainerControl = this;
+            // 
+            // btnXoaSach
+            // 
+            this.btnXoaSach.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnXoaSach.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnXoaSach.ImageKey = "down.png";
+            this.btnXoaSach.ImageList = this.imageList3;
+            this.btnXoaSach.Location = new System.Drawing.Point(922, 586);
+            this.btnXoaSach.Name = "btnXoaSach";
+            this.btnXoaSach.Size = new System.Drawing.Size(55, 47);
+            this.btnXoaSach.TabIndex = 43;
+            this.btnXoaSach.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXoaSach.UseVisualStyleBackColor = false;
+            this.btnXoaSach.Click += new System.EventHandler(this.btnXoaSach_Click);
+            // 
+            // btnThem
+            // 
+            this.btnThem.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnThem.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnThem.ImageKey = "up.png";
+            this.btnThem.ImageList = this.imageList3;
+            this.btnThem.Location = new System.Drawing.Point(922, 534);
+            this.btnThem.Name = "btnThem";
+            this.btnThem.Size = new System.Drawing.Size(55, 47);
+            this.btnThem.TabIndex = 42;
+            this.btnThem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnThem.UseVisualStyleBackColor = false;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.button1.ImageKey = "Logo.png";
+            this.button1.ImageList = this.imageList2;
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(154, 122);
+            this.button1.TabIndex = 40;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnHuy
+            // 
+            this.btnHuy.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnHuy.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnHuy.ImageKey = "Hủy.jpg";
+            this.btnHuy.ImageList = this.imageList1;
+            this.btnHuy.Location = new System.Drawing.Point(1277, 616);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(155, 73);
+            this.btnHuy.TabIndex = 39;
+            this.btnHuy.Text = "   Hủy";
+            this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHuy.UseVisualStyleBackColor = false;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+            // 
+            // btnLuu
+            // 
+            this.btnLuu.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnLuu.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnLuu.ImageKey = "Lưu.png";
+            this.btnLuu.ImageList = this.imageList1;
+            this.btnLuu.Location = new System.Drawing.Point(1079, 616);
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(155, 73);
+            this.btnLuu.TabIndex = 38;
+            this.btnLuu.Text = "   Lưu";
+            this.btnLuu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLuu.UseVisualStyleBackColor = false;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
+            // 
+            // btnGiaHan
+            // 
+            this.btnGiaHan.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnGiaHan.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnGiaHan.ImageKey = "gia hạn.png";
+            this.btnGiaHan.ImageList = this.imageList1;
+            this.btnGiaHan.Location = new System.Drawing.Point(1277, 521);
+            this.btnGiaHan.Name = "btnGiaHan";
+            this.btnGiaHan.Size = new System.Drawing.Size(155, 73);
+            this.btnGiaHan.TabIndex = 37;
+            this.btnGiaHan.Text = "Gia hạn";
+            this.btnGiaHan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnGiaHan.UseVisualStyleBackColor = false;
+            this.btnGiaHan.Click += new System.EventHandler(this.btnGiaHan_Click);
+            // 
+            // btnLap
+            // 
+            this.btnLap.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnLap.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnLap.ImageKey = "Thêm.png";
+            this.btnLap.ImageList = this.imageList1;
+            this.btnLap.Location = new System.Drawing.Point(1079, 521);
+            this.btnLap.Name = "btnLap";
+            this.btnLap.Size = new System.Drawing.Size(155, 73);
+            this.btnLap.TabIndex = 35;
+            this.btnLap.Text = "   Lập";
+            this.btnLap.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLap.UseVisualStyleBackColor = false;
+            this.btnLap.Click += new System.EventHandler(this.btnLap_Click);
+            // 
+            // btnResetLogo
+            // 
+            this.btnResetLogo.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnResetLogo.ImageKey = "Logo.png";
+            this.btnResetLogo.ImageList = this.imageList2;
+            this.btnResetLogo.Location = new System.Drawing.Point(0, 0);
+            this.btnResetLogo.Name = "btnResetLogo";
+            this.btnResetLogo.Size = new System.Drawing.Size(154, 122);
+            this.btnResetLogo.TabIndex = 50;
+            this.btnResetLogo.UseVisualStyleBackColor = false;
+            this.btnResetLogo.Click += new System.EventHandler(this.btnResetLogo_Click_1);
+            // 
+            // btnTra
+            // 
+            this.btnTra.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnTra.Font = new System.Drawing.Font("Calibri", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnTra.ImageKey = "Sửa.jpg";
+            this.btnTra.ImageList = this.imageList1;
+            this.btnTra.Location = new System.Drawing.Point(159, 818);
+            this.btnTra.Name = "btnTra";
+            this.btnTra.Size = new System.Drawing.Size(145, 73);
+            this.btnTra.TabIndex = 45;
+            this.btnTra.Text = "  Xem";
+            this.btnTra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTra.UseVisualStyleBackColor = false;
+            this.btnTra.Click += new System.EventHandler(this.btnTra_Click);
             // 
             // Form7
             // 

@@ -48,6 +48,8 @@ namespace QuanLyThuVien
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtTongno = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.dNgayhethan = new System.Windows.Forms.DateTimePicker();
             this.dNgaylapthe = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
@@ -55,7 +57,7 @@ namespace QuanLyThuVien
             this.rdoNu = new System.Windows.Forms.RadioButton();
             this.rdoNam = new System.Windows.Forms.RadioButton();
             this.cboLoaidocgia = new System.Windows.Forms.ComboBox();
-            this.txtDongia = new System.Windows.Forms.TextBox();
+            this.txtSachmuon = new System.Windows.Forms.TextBox();
             this.txtSdt = new System.Windows.Forms.TextBox();
             this.txtDiachi = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -82,8 +84,6 @@ namespace QuanLyThuVien
             this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblTen = new System.Windows.Forms.Label();
             this.btnHome = new System.Windows.Forms.Button();
-            this.txtTongno = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -223,10 +223,10 @@ namespace QuanLyThuVien
             this.rdoMaSach.AutoSize = true;
             this.rdoMaSach.Location = new System.Drawing.Point(16, 44);
             this.rdoMaSach.Name = "rdoMaSach";
-            this.rdoMaSach.Size = new System.Drawing.Size(124, 31);
+            this.rdoMaSach.Size = new System.Drawing.Size(93, 31);
             this.rdoMaSach.TabIndex = 0;
             this.rdoMaSach.TabStop = true;
-            this.rdoMaSach.Text = "Mã sách";
+            this.rdoMaSach.Text = "NXB";
             this.rdoMaSach.UseVisualStyleBackColor = true;
             this.rdoMaSach.CheckedChanged += new System.EventHandler(this.rdoMaSach_CheckedChanged);
             // 
@@ -309,7 +309,7 @@ namespace QuanLyThuVien
             this.groupBox4.Controls.Add(this.rdoNu);
             this.groupBox4.Controls.Add(this.rdoNam);
             this.groupBox4.Controls.Add(this.cboLoaidocgia);
-            this.groupBox4.Controls.Add(this.txtDongia);
+            this.groupBox4.Controls.Add(this.txtSachmuon);
             this.groupBox4.Controls.Add(this.txtSdt);
             this.groupBox4.Controls.Add(this.txtDiachi);
             this.groupBox4.Controls.Add(this.txtEmail);
@@ -328,16 +328,33 @@ namespace QuanLyThuVien
             this.groupBox4.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupBox4.Location = new System.Drawing.Point(6, 43);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1104, 345);
+            this.groupBox4.Size = new System.Drawing.Size(1126, 345);
             this.groupBox4.TabIndex = 22;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Thông tin Độc giả";
+            // 
+            // txtTongno
+            // 
+            this.txtTongno.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTongno.Location = new System.Drawing.Point(184, 288);
+            this.txtTongno.Name = "txtTongno";
+            this.txtTongno.Size = new System.Drawing.Size(345, 35);
+            this.txtTongno.TabIndex = 28;
+            // 
+            // label13
+            // 
+            this.label13.Location = new System.Drawing.Point(37, 280);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(141, 48);
+            this.label13.TabIndex = 27;
+            this.label13.Text = "Tổng nợ :";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // dNgayhethan
             // 
             this.dNgayhethan.CustomFormat = "dd/MM/yyyy";
             this.dNgayhethan.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dNgayhethan.Location = new System.Drawing.Point(750, 293);
+            this.dNgayhethan.Location = new System.Drawing.Point(776, 288);
             this.dNgayhethan.Name = "dNgayhethan";
             this.dNgayhethan.Size = new System.Drawing.Size(267, 35);
             this.dNgayhethan.TabIndex = 26;
@@ -346,7 +363,7 @@ namespace QuanLyThuVien
             // 
             this.dNgaylapthe.CustomFormat = "dd/MM/yyyy";
             this.dNgaylapthe.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dNgaylapthe.Location = new System.Drawing.Point(750, 244);
+            this.dNgaylapthe.Location = new System.Drawing.Point(776, 239);
             this.dNgaylapthe.Name = "dNgaylapthe";
             this.dNgaylapthe.Size = new System.Drawing.Size(267, 35);
             this.dNgaylapthe.TabIndex = 25;
@@ -364,7 +381,7 @@ namespace QuanLyThuVien
             // 
             this.dNgaysinh.CustomFormat = "dd/MM/yyyy";
             this.dNgaysinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dNgaysinh.Location = new System.Drawing.Point(749, 195);
+            this.dNgaysinh.Location = new System.Drawing.Point(775, 190);
             this.dNgaysinh.Name = "dNgaysinh";
             this.dNgaysinh.Size = new System.Drawing.Size(268, 35);
             this.dNgaysinh.TabIndex = 23;
@@ -395,23 +412,24 @@ namespace QuanLyThuVien
             // 
             this.cboLoaidocgia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLoaidocgia.FormattingEnabled = true;
-            this.cboLoaidocgia.Location = new System.Drawing.Point(750, 146);
+            this.cboLoaidocgia.Location = new System.Drawing.Point(776, 141);
             this.cboLoaidocgia.Name = "cboLoaidocgia";
             this.cboLoaidocgia.Size = new System.Drawing.Size(345, 35);
             this.cboLoaidocgia.TabIndex = 20;
             // 
-            // txtDongia
+            // txtSachmuon
             // 
-            this.txtDongia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDongia.Location = new System.Drawing.Point(749, 97);
-            this.txtDongia.Name = "txtDongia";
-            this.txtDongia.Size = new System.Drawing.Size(345, 35);
-            this.txtDongia.TabIndex = 16;
+            this.txtSachmuon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSachmuon.Enabled = false;
+            this.txtSachmuon.Location = new System.Drawing.Point(775, 92);
+            this.txtSachmuon.Name = "txtSachmuon";
+            this.txtSachmuon.Size = new System.Drawing.Size(345, 35);
+            this.txtSachmuon.TabIndex = 16;
             // 
             // txtSdt
             // 
             this.txtSdt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSdt.Location = new System.Drawing.Point(749, 48);
+            this.txtSdt.Location = new System.Drawing.Point(775, 43);
             this.txtSdt.Name = "txtSdt";
             this.txtSdt.Size = new System.Drawing.Size(345, 35);
             this.txtSdt.TabIndex = 15;
@@ -483,9 +501,9 @@ namespace QuanLyThuVien
             // 
             this.label7.Location = new System.Drawing.Point(574, 88);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(152, 48);
+            this.label7.Size = new System.Drawing.Size(194, 48);
             this.label7.TabIndex = 6;
-            this.label7.Text = "Mk :";
+            this.label7.Text = "Sách đang mượn :";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label6
@@ -634,23 +652,7 @@ namespace QuanLyThuVien
             this.btnHome.Size = new System.Drawing.Size(154, 122);
             this.btnHome.TabIndex = 23;
             this.btnHome.UseVisualStyleBackColor = false;
-            // 
-            // txtTongno
-            // 
-            this.txtTongno.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTongno.Location = new System.Drawing.Point(184, 288);
-            this.txtTongno.Name = "txtTongno";
-            this.txtTongno.Size = new System.Drawing.Size(345, 35);
-            this.txtTongno.TabIndex = 28;
-            // 
-            // label13
-            // 
-            this.label13.Location = new System.Drawing.Point(37, 280);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(141, 48);
-            this.label13.TabIndex = 27;
-            this.label13.Text = "Tổng nợ :";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // FormUser
             // 
@@ -667,6 +669,7 @@ namespace QuanLyThuVien
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thư Viện";
             this.Load += new System.EventHandler(this.FormUser_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormUser_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
@@ -711,7 +714,7 @@ namespace QuanLyThuVien
         private System.Windows.Forms.RadioButton rdoNu;
         private System.Windows.Forms.RadioButton rdoNam;
         private System.Windows.Forms.ComboBox cboLoaidocgia;
-        private System.Windows.Forms.TextBox txtDongia;
+        private System.Windows.Forms.TextBox txtSachmuon;
         private System.Windows.Forms.TextBox txtSdt;
         private System.Windows.Forms.TextBox txtDiachi;
         private System.Windows.Forms.TextBox txtEmail;

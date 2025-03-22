@@ -135,7 +135,7 @@ namespace QuanLyThuVien
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(809, 464);
+            this.ClientSize = new System.Drawing.Size(809, 449);
             this.Controls.Add(this.btnHienMatKhau);
             this.Controls.Add(this.txtMk);
             this.Controls.Add(this.button1);
@@ -146,6 +146,7 @@ namespace QuanLyThuVien
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Tag = "";
             this.Text = "Đăng nhập";
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -59,6 +59,7 @@ namespace QuanLyThuVien
                             txtTongno.Text = reader["fTongno"].ToString();
                             cboLoaidocgia.SelectedValue = maTheLoai;
                             txtDiachi.Text = reader["sDiachi"].ToString();
+                            txtSachmuon.Text = reader["iSosachmuon"].ToString();
                             txtSdt.Text = reader["sSdt"].ToString();
                             dNgaysinh.Value = Convert.ToDateTime(reader["dNgaysinh"]);
                             dNgaylapthe.Value = Convert.ToDateTime(reader["dNgaylapthe"]);
@@ -234,7 +235,6 @@ namespace QuanLyThuVien
             // Tắt chế độ chỉnh sửa
             DisableEditing();
 
-            // Load lại thông tin độc giả để hủy bỏ các thay đổi
             LoadDataDocGia();
         }
 
@@ -287,20 +287,18 @@ namespace QuanLyThuVien
 
         private void click_to_find(object sender, EventArgs e)
         {
-            string filter = "1 = 1"; // Điều kiện mặc định
+            string filter = "1 = 1"; 
 
             // Nếu có từ khóa tìm kiếm, tạo bộ lọc dựa trên RadioButton được chọn
             if (!string.IsNullOrEmpty(txtTimkiem.Text.Trim()))
             {
                 if (rdoMaSach.Checked) // Tìm theo mã sách
-                    filter += string.Format(" AND [Mã sách] = '{0}'", txtTimkiem.Text);
+                    filter += string.Format(" AND [NXB] LIKE '%{0}%'", txtTimkiem.Text);
                 else if (rdoTenSach.Checked) // Tìm theo tên sách
                     filter += string.Format(" AND [Tên sách] LIKE '%{0}%'", txtTimkiem.Text);
-                else if (rdoTheLoai.Checked) // Tìm theo thể loại
+                else if (rdoTheLoai.Checked) 
                     filter += string.Format(" AND [Thể loại] LIKE '%{0}%'", txtTimkiem.Text);
             }
-
-            // Gọi phương thức ShowData với bộ lọc đã tạo
             ShowData(filter);
         }
 
@@ -341,6 +339,32 @@ namespace QuanLyThuVien
         private void FormUser_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormUser_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Kiểm tra nếu phím được nhấn là Esc
+            if (e.KeyCode == Keys.Escape)
+            {
+                // Hiển thị hộp thoại xác nhận
+                DialogResult result = MessageBox.Show(
+                    "Bạn có chắc chắn muốn thoát form không?",
+                    "Xác nhận thoát",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                // Nếu người dùng chọn "Yes", đóng form
+                if (result == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
         }
     }
 }

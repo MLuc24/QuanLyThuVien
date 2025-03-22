@@ -42,7 +42,7 @@ namespace QuanLyThuVien
             this.rdoNu = new System.Windows.Forms.RadioButton();
             this.rdoNam = new System.Windows.Forms.RadioButton();
             this.cboLoaidocgia = new System.Windows.Forms.ComboBox();
-            this.txtDongia = new System.Windows.Forms.TextBox();
+            this.txtSlsachmuon = new System.Windows.Forms.TextBox();
             this.txtSdt = new System.Windows.Forms.TextBox();
             this.txtDiachi = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -140,7 +140,7 @@ namespace QuanLyThuVien
             this.groupBox4.Controls.Add(this.rdoNu);
             this.groupBox4.Controls.Add(this.rdoNam);
             this.groupBox4.Controls.Add(this.cboLoaidocgia);
-            this.groupBox4.Controls.Add(this.txtDongia);
+            this.groupBox4.Controls.Add(this.txtSlsachmuon);
             this.groupBox4.Controls.Add(this.txtSdt);
             this.groupBox4.Controls.Add(this.txtDiachi);
             this.groupBox4.Controls.Add(this.txtEmail);
@@ -157,7 +157,7 @@ namespace QuanLyThuVien
             this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.Controls.Add(this.label1);
             this.groupBox4.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.groupBox4.Location = new System.Drawing.Point(49, 227);
+            this.groupBox4.Location = new System.Drawing.Point(50, 215);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(1263, 345);
             this.groupBox4.TabIndex = 21;
@@ -187,7 +187,7 @@ namespace QuanLyThuVien
             // 
             // label11
             // 
-            this.label11.Location = new System.Drawing.Point(708, 276);
+            this.label11.Location = new System.Drawing.Point(677, 280);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(152, 48);
             this.label11.TabIndex = 24;
@@ -234,13 +234,14 @@ namespace QuanLyThuVien
             this.cboLoaidocgia.Size = new System.Drawing.Size(345, 35);
             this.cboLoaidocgia.TabIndex = 20;
             // 
-            // txtDongia
+            // txtSlsachmuon
             // 
-            this.txtDongia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDongia.Location = new System.Drawing.Point(883, 93);
-            this.txtDongia.Name = "txtDongia";
-            this.txtDongia.Size = new System.Drawing.Size(345, 35);
-            this.txtDongia.TabIndex = 16;
+            this.txtSlsachmuon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSlsachmuon.Enabled = false;
+            this.txtSlsachmuon.Location = new System.Drawing.Point(883, 93);
+            this.txtSlsachmuon.Name = "txtSlsachmuon";
+            this.txtSlsachmuon.Size = new System.Drawing.Size(345, 35);
+            this.txtSlsachmuon.TabIndex = 16;
             // 
             // txtSdt
             // 
@@ -288,7 +289,7 @@ namespace QuanLyThuVien
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(708, 228);
+            this.label10.Location = new System.Drawing.Point(677, 232);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(152, 48);
             this.label10.TabIndex = 9;
@@ -297,7 +298,7 @@ namespace QuanLyThuVien
             // 
             // label9
             // 
-            this.label9.Location = new System.Drawing.Point(708, 180);
+            this.label9.Location = new System.Drawing.Point(677, 184);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(152, 48);
             this.label9.TabIndex = 8;
@@ -306,7 +307,7 @@ namespace QuanLyThuVien
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(708, 132);
+            this.label8.Location = new System.Drawing.Point(677, 136);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(152, 48);
             this.label8.TabIndex = 7;
@@ -315,16 +316,16 @@ namespace QuanLyThuVien
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(708, 84);
+            this.label7.Location = new System.Drawing.Point(658, 88);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(152, 48);
+            this.label7.Size = new System.Drawing.Size(219, 48);
             this.label7.TabIndex = 6;
-            this.label7.Text = "Mk :";
+            this.label7.Text = "Số sách đang mượn :";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(708, 36);
+            this.label6.Location = new System.Drawing.Point(677, 40);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(152, 48);
             this.label6.TabIndex = 5;
@@ -381,9 +382,9 @@ namespace QuanLyThuVien
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.groupBox1.Location = new System.Drawing.Point(167, 59);
+            this.groupBox1.Location = new System.Drawing.Point(180, 74);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1058, 141);
+            this.groupBox1.Size = new System.Drawing.Size(1058, 122);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tìm kiếm Độc giả";
@@ -393,7 +394,7 @@ namespace QuanLyThuVien
             this.groupBox3.Controls.Add(this.txtTimkiem);
             this.groupBox3.Location = new System.Drawing.Point(591, 30);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(438, 93);
+            this.groupBox3.Size = new System.Drawing.Size(438, 92);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Nhập thông tin cần Tìm kiếm";
@@ -415,7 +416,7 @@ namespace QuanLyThuVien
             this.groupBox2.Controls.Add(this.rdoMaSach);
             this.groupBox2.Location = new System.Drawing.Point(17, 31);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(562, 92);
+            this.groupBox2.Size = new System.Drawing.Size(562, 91);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tìm theo";
@@ -425,10 +426,10 @@ namespace QuanLyThuVien
             this.rdoLoai.AutoSize = true;
             this.rdoLoai.Location = new System.Drawing.Point(394, 44);
             this.rdoLoai.Name = "rdoLoai";
-            this.rdoLoai.Size = new System.Drawing.Size(162, 31);
+            this.rdoLoai.Size = new System.Drawing.Size(112, 31);
             this.rdoLoai.TabIndex = 2;
             this.rdoLoai.TabStop = true;
-            this.rdoLoai.Text = "Loại độc giả";
+            this.rdoLoai.Text = "Địa chỉ";
             this.rdoLoai.UseVisualStyleBackColor = true;
             this.rdoLoai.CheckedChanged += new System.EventHandler(this.rdoLoai_CheckedChanged);
             // 
@@ -449,10 +450,10 @@ namespace QuanLyThuVien
             this.rdoMaSach.AutoSize = true;
             this.rdoMaSach.Location = new System.Drawing.Point(16, 44);
             this.rdoMaSach.Name = "rdoMaSach";
-            this.rdoMaSach.Size = new System.Drawing.Size(150, 31);
+            this.rdoMaSach.Size = new System.Drawing.Size(162, 31);
             this.rdoMaSach.TabIndex = 0;
             this.rdoMaSach.TabStop = true;
-            this.rdoMaSach.Text = "Mã độc giả";
+            this.rdoMaSach.Text = "Loại độc giả";
             this.rdoMaSach.UseVisualStyleBackColor = true;
             this.rdoMaSach.CheckedChanged += new System.EventHandler(this.rdoMaSach_CheckedChanged);
             // 
@@ -671,7 +672,7 @@ namespace QuanLyThuVien
         private System.Windows.Forms.RadioButton rdoNu;
         private System.Windows.Forms.RadioButton rdoNam;
         private System.Windows.Forms.ComboBox cboLoaidocgia;
-        private System.Windows.Forms.TextBox txtDongia;
+        private System.Windows.Forms.TextBox txtSlsachmuon;
         private System.Windows.Forms.TextBox txtSdt;
         private System.Windows.Forms.TextBox txtDiachi;
         private System.Windows.Forms.TextBox txtEmail;

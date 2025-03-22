@@ -134,7 +134,7 @@ namespace QuanLyThuVien
             FormIndex formIndex = (FormIndex)this.Owner;
             if (formIndex != null)
             {
-                formIndex.UpdateTenNhanVien(txtTenNV.Text);
+               // formIndex.UpdateTenNhanVien(txtTenNV.Text);
             }
 
             DisableEditing();
@@ -176,6 +176,27 @@ namespace QuanLyThuVien
                 errorProvider2.SetError(txtSdt, "Số điện thoại phải có 10 chữ số!");
             else
                 errorProvider2.SetError(txtSdt, "");
+        }
+
+        private void FormAdminInfor_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Kiểm tra nếu phím được nhấn là Esc
+            if (e.KeyCode == Keys.Escape)
+            {
+                // Hiển thị hộp thoại xác nhận
+                DialogResult result = MessageBox.Show(
+                    "Bạn có chắc chắn muốn thoát form không?",
+                    "Xác nhận thoát",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                // Nếu người dùng chọn "Yes", đóng form
+                if (result == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
         }
     }
 }

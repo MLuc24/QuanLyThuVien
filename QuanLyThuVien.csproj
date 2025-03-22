@@ -81,6 +81,12 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="CR_TK_DG.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CR_TK_DG.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CR_TL_MONTH.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -133,6 +139,18 @@
     </Compile>
     <Compile Include="FormBaoCaoDG.Designer.cs">
       <DependentUpon>FormBaoCaoDG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormBaoCaoUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBaoCaoUser.Designer.cs">
+      <DependentUpon>FormBaoCaoUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormBC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBC.Designer.cs">
+      <DependentUpon>FormBC.cs</DependentUpon>
     </Compile>
     <Compile Include="FormCTmuontra.cs">
       <SubType>Form</SubType>
@@ -235,6 +253,10 @@
       <LastGenOutput>CR_RC_DG.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="CR_TK_DG.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CR_TK_DG.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CR_TL_MONTH.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CR_TL_MONTH.cs</LastGenOutput>
@@ -253,6 +275,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBaoCaoDG.resx">
       <DependentUpon>FormBaoCaoDG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBaoCaoUser.resx">
+      <DependentUpon>FormBaoCaoUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBC.resx">
+      <DependentUpon>FormBC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCTmuontra.resx">
       <DependentUpon>FormCTmuontra.cs</DependentUpon>

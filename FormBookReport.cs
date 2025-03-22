@@ -12,13 +12,11 @@ namespace QuanLyThuVien
     {
         private string kn;
         private DataTable pm;
-        private DataTable pt;
         private string tenNhanVien;
         public FormBookReport(string tenNV)
         {
             InitializeComponent();
             kn = ConfigurationManager.ConnectionStrings["qltv"].ConnectionString;
-            LoadDataTreHan();
             this.tenNhanVien = tenNV;
         }
 
@@ -58,6 +56,7 @@ namespace QuanLyThuVien
 
         private void Form9_Load(object sender, EventArgs e)
         {
+
             // Thêm các tháng vào ComboBox
             for (int i = 1; i <= 12; i++)
             {
@@ -71,32 +70,27 @@ namespace QuanLyThuVien
                 cboNam.Items.Add(i);
             }
 
-            // Không chọn giá trị mặc định cho ComboBox tháng và năm
+            // Không chọn giá trị mặc định
             cboThang.SelectedIndex = -1;
             cboNam.SelectedIndex = -1;
 
+            // Mặc định vô hiệu hóa cboThang và btnPrint
+            cboThang.Enabled = false;
+            btnPrint.Enabled = false;
+
+            UpdatePrintButtonState(); // Kiểm tra trạng thái của btnPrint
             // Load dữ liệu mặc định (tất cả dữ liệu)
             LoadData();
         }
 
-        private void cboThang_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void UpdatePrintButtonState()
         {
-            // Lấy giá trị tháng và năm từ ComboBox
-            int? thang = cboThang.SelectedItem as int?;
-            int? nam = cboNam.SelectedItem as int?;
+            bool isYearSelected = cboNam.SelectedIndex >= 0;
+            bool isMonthSelected = cboThang.SelectedIndex >= 0;
+            bool isRowSelected = dgvTKS_TL.SelectedRows.Count > 0;
 
-            // Gọi phương thức LoadData để cập nhật dữ liệu
-            LoadData(thang, nam);
-        }
-
-        private void cboNam_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            // Lấy giá trị tháng và năm từ ComboBox
-            int? thang = cboThang.SelectedItem as int?;
-            int? nam = cboNam.SelectedItem as int?;
-
-            // Gọi phương thức LoadData để cập nhật dữ liệu
-            LoadData(thang, nam);
+            // Bật btnPrint nếu đủ 3 điều kiện, ngược lại tắt
+            btnPrint.Enabled = isYearSelected && isMonthSelected && isRowSelected;
         }
 
         private void LoadChiTietSachMuon(string maTheLoai, int? thang = null, int? nam = null)
@@ -138,47 +132,47 @@ namespace QuanLyThuVien
 
         private void dgvTKS_TL_SelectionChanged_1(object sender, EventArgs e)
         {
-            // Kiểm tra xem có hàng nào được chọn không
-            if (dgvTKS_TL.SelectedRows.Count > 0)
+            
+        }
+
+        private void FormBookReport_KeyDown(object sender, KeyEventArgs e)
+        {
+           
+            if (e.KeyCode == Keys.Escape)
             {
-                // Lấy mã thể loại từ hàng được chọn
-                var selectedRow = dgvTKS_TL.SelectedRows[0];
-                string maTheLoai = selectedRow.Cells["Mã thể loại"].Value.ToString();
+                // Hiển thị hộp thoại xác nhận
+                DialogResult result = MessageBox.Show(
+                    "Bạn có chắc chắn muốn thoát form không?",
+                    "Xác nhận thoát",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
 
-                // Lấy giá trị tháng và năm từ ComboBox
-                int? thang = cboThang.SelectedItem as int?;
-                int? nam = cboNam.SelectedItem as int?;
-
-                // Gọi phương thức để hiển thị chi tiết sách đã mượn
-                LoadChiTietSachMuon(maTheLoai, thang, nam);
+                // Nếu người dùng chọn "Yes", đóng form
+                if (result == DialogResult.Yes)
+                {
+                    this.Close();
+                }
             }
         }
 
-        private void LoadDataTreHan()
+        private void btnPrint_KeyDown(object sender, KeyEventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(kn))
+            if (e.KeyCode == Keys.Enter && btnPrint.Enabled)
             {
-                string query = @"
-            SELECT 
-                s.sMasach AS [Mã sách],
-                sTensach AS [Tên sách], 
-                sTentheloai AS [Tên thể loại],
-                dNgaytra as [Ngày trả],
-                DATEDIFF(day, dNgayhentra, dNgaytra) as [Số ngày trễ hẹn]
-            FROM 
-                tblCTmuontra pt
-                JOIN tblSach s ON pt.sMasach = s.sMasach
-                JOIN tblTheloai tl ON tl.sMatheloai = s.sMatheloai
-            WHERE 
-                dNgaytra > dNgayhentra
-            ORDER BY 
-                dNgaytra ASC";
-                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                pt = new DataTable();
-                adapter.Fill(pt);
-                dgvSachtrehan.DataSource = pt;
-                dgvSachtrehan.Columns["Ngày trả"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                btnPrint_Click(sender, e);
             }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            cboNam.SelectedIndex = -1;
+            cboThang.SelectedIndex = -1;
+
+            cboThang.Enabled = false;
+
+            LoadData();
+            UpdatePrintButtonState();
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -196,6 +190,42 @@ namespace QuanLyThuVien
             {
                 MessageBox.Show("Vui lòng chọn một thể loại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void cboNam_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cboThang.Enabled = cboNam.SelectedIndex >= 0;
+
+            int? thang = cboThang.SelectedIndex >= 0 ? (int?)cboThang.SelectedItem : null;
+            int? nam = (int?)cboNam.SelectedItem;
+
+            LoadData(thang, nam);
+            UpdatePrintButtonState(); 
+        }
+
+        private void cboThang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int? thang = (int?)cboThang.SelectedItem;
+            int? nam = (int?)cboNam.SelectedItem;
+
+            LoadData(thang, nam);
+            UpdatePrintButtonState();
+        }
+
+        private void dgvTKS_TL_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvTKS_TL.SelectedRows.Count > 0)
+            {
+                var selectedRow = dgvTKS_TL.SelectedRows[0];
+                string maTheLoai = selectedRow.Cells["Mã thể loại"].Value.ToString();
+
+                int? thang = cboThang.SelectedItem as int?;
+                int? nam = cboNam.SelectedItem as int?;
+
+                // Gọi phương thức để hiển thị chi tiết sách đã mượn
+                LoadChiTietSachMuon(maTheLoai, thang, nam);
+            }
+            UpdatePrintButtonState();
         }
     }
 }

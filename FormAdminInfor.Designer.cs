@@ -343,6 +343,7 @@ namespace QuanLyThuVien
             this.Name = "FormAdminInfor";
             this.Text = "FormAdminInfor";
             this.Load += new System.EventHandler(this.FormAdminInfor_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormAdminInfor_KeyDown);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

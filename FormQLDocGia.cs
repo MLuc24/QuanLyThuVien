@@ -51,7 +51,6 @@ namespace QuanLyThuVien
 
             isAdding = false;
             LoadLoaiDG();
-
             cboLoaidocgia.SelectedIndex = 0;
         }
 
@@ -67,8 +66,7 @@ namespace QuanLyThuVien
             rdoNu.Enabled = false;
             dNgayhethan.Enabled = false;
             dNgaylapthe.Enabled = false;
-            dNgaysinh.Enabled = false;
-           
+            dNgaysinh.Enabled = false;   
         }
 
         private void EnableTextBoxes()
@@ -99,6 +97,7 @@ namespace QuanLyThuVien
             txtSdt.Text = string.Empty;
             txtEmail.Text = string.Empty;
             txtDiachi.Text = string.Empty;
+            txtSlsachmuon.Text = string.Empty;
             dNgaysinh.Value = DateTime.Now;
             dNgaylapthe.Value = DateTime.Now;
             dNgayhethan.Value = DateTime.Now;
@@ -276,6 +275,7 @@ namespace QuanLyThuVien
                 txtTendocgia.Text = selecterRow.Cells["Tên độc giả"].Value.ToString();
                 txtEmail.Text = selecterRow.Cells["Email"].Value.ToString();
                 txtDiachi.Text = selecterRow.Cells["Địa chỉ"].Value.ToString();
+                txtSlsachmuon.Text = selecterRow.Cells["Sách mượn"].Value.ToString();
                 rdoNam.Checked = selecterRow.Cells["Giới tính"].Value.ToString() == "Nam";
                 rdoNu.Checked = selecterRow.Cells["Giới tính"].Value.ToString() == "Nữ";
                 dNgaysinh.Value = Convert.ToDateTime(selecterRow.Cells["Ngày sinh"].Value);
@@ -357,14 +357,11 @@ namespace QuanLyThuVien
             string querry = "";
 
             if (rdoMaSach.Checked)
-                querry = "Select * from v_DSDG Where [Mã độc giả] = @keyword";
+                querry = "Select * from v_DSDG Where [Loại độc giả] LIKE @keyword";
             else if (rdoTenSach.Checked)
                 querry = "Select * from v_DSDG Where [Tên độc giả] Like @keyword";
             else if (rdoLoai.Checked)
-                querry = "Select sMadocgia as [Mã độc giả], sTendocgia as [Tên độc giả], dNgaysinh as [Ngày sinh], sGioitinh as [Giới tính], " +
-                    "sEmail as [Email], sDiachi as [Địa chỉ], sSdt as [Số điện thoại], d.sMaloaidocgia as [Mã loại độc giả], dNgaylapthe as [Ngày lập thẻ]," +
-                    "dNgayhethan as [Ngày hết hạn] From tblDocgia d Join tblLoaidocgia m On d.sMaloaidocgia = m.sMaloaidocgia Where " +
-                    "sTenloaidocgia Like @keyword AND isDeleted = 0";
+                querry = "Select * from v_DSDG Where [Địa chỉ] Like @keyword";
 
             if (string.IsNullOrEmpty(txtTimkiem.Text))
                 querry = "Select * from v_DSDG";
@@ -374,11 +371,8 @@ namespace QuanLyThuVien
                 {
                     cmd.CommandText = querry;
                     if (!string.IsNullOrEmpty(search))
-                    {
-                        if (rdoMaSach.Checked)
-                            cmd.Parameters.AddWithValue("@keyword", search);
-                        else cmd.Parameters.AddWithValue("@keyword", "%" + search + "%");
-                    }
+                     cmd.Parameters.AddWithValue("@keyword", "%" + search + "%");
+
                     using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
                     {
                         DataTable tb = new DataTable();
@@ -427,12 +421,8 @@ namespace QuanLyThuVien
         {
             if (dsDocgia.SelectedRows.Count > 0)
             {
-               
-
-                // Cho phép chỉnh sửa ngày hết hạn
                 dNgayhethan.Enabled = true;
 
-                // Vô hiệu hóa nút "Gia hạn"
                 btnAdd.Enabled = false;
                 btnEdit.Enabled = false;
                 btnDelete.Enabled = false;
@@ -483,14 +473,14 @@ namespace QuanLyThuVien
             }
             else
             {
-                errorProvider6.SetError(dNgaylapthe, ""); // Xóa lỗi nếu hợp lệ
+                errorProvider6.SetError(dNgaylapthe, "");
             }
         }
 
         private void btnReport_Click(object sender, EventArgs e)
         {
             FormBaoCaoDG reportForm = new FormBaoCaoDG(tenNhanVien);
-            reportForm.ShowDialog(); // Mở form báo cáo
+            reportForm.ShowDialog(); 
         }
     }
 }

@@ -1,10 +1,9 @@
-﻿using System.Linq;
-using System;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
+using CrystalDecisions.CrystalReports.Engine;
 namespace QuanLyThuVien
 {
     public partial class FormIndex : Form

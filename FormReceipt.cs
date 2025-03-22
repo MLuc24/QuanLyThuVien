@@ -312,9 +312,25 @@ namespace QuanLyThuVien
             reportForm.ShowDialog();
         }
 
-        private void txtMaPhieuThu_TextChanged(object sender, EventArgs e)
+        private void FormReceipt_KeyDown(object sender, KeyEventArgs e)
         {
+            // Kiểm tra nếu phím được nhấn là Esc
+            if (e.KeyCode == Keys.Escape)
+            {
+                // Hiển thị hộp thoại xác nhận
+                DialogResult result = MessageBox.Show(
+                    "Bạn có chắc chắn muốn thoát form không?",
+                    "Xác nhận thoát",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
 
+                // Nếu người dùng chọn "Yes", đóng form
+                if (result == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
         }
     }
 }
